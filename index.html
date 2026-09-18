@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Berkas Penyelidikan Confidential RR-2026-014 — Renaissance Ricarda Sugiarto Putra | Software Engineer, AI Enthusiast & Cyber Security Enthusiast">
+  <title>RR-2026-014 — Berkas Penyelidikan Confidential</title>
+
+  <!-- SEO & Social Sharing Meta Tags (Open Graph & Twitter) -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="RR-2026-014 — Berkas Penyelidikan Confidential">
+  <meta property="og:description"
+    content="Portofolio Renaissance Ricarda Sugiarto Putra — Software Engineer, AI Enthusiast & Cyber Security Enthusiast.">
+  <meta property="og:image" content="assets/photo.jpeg">
+  <meta property="og:locale" content="id_ID">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="RR-2026-014 — Berkas Penyelidikan Confidential">
+  <meta name="twitter:description"
+    content="Portofolio Renaissance Ricarda Sugiarto Putra — Software Engineer, AI Enthusiast & Cyber Security Enthusiast.">
+  <meta name="twitter:image" content="assets/photo.jpeg">
+
+  <!-- Typography: Fraunces (Dossier Serif), IBM Plex Mono (Typewriter/Terminal), IBM Plex Sans (Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Core Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <!-- ========================================================================
+       1. CLOSED FOLDER INTRO COVER OVERLAY (ANIMASI MEMBUKA DOKUMEN PERTAMA KALI)
+       ======================================================================== -->
+  <div class="folder-intro-overlay" id="folderIntroOverlay" role="dialog" aria-modal="true"
+    aria-label="Sampul Dokumen Penyelidikan Tertutup">
+    <div class="manila-closed-folder" id="closedFolderCard" tabindex="0" role="button"
+      aria-label="Buka map dokumen penyelidikan">
+
+      <div class="folder-top-tab">ARSIP INVESTIGASI // RR-2026-014</div>
+
+      <div class="cover-body-container">
+        <!-- Red Confidential Stamp Box -->
+        <div class="cover-stamp-box">
+          <h2>CONFIDENTIAL</h2>
+          <p>HAK AKSES TERBATAS — HANYA UNTUK PERSONEL BERWENANG</p>
+        </div>
+
+        <!-- Dossier Metadata -->
+        <div class="cover-file-dossier-info">
+          <div class="row">
+            <span class="key">NOMOR BERKAS</span>
+            <span class="val">RR-2026-014</span>
+          </div>
+          <div class="row">
+            <span class="key">NAMA SUBJEK</span>
+            <span class="val">Renaissance Ricarda Sugiarto Putra</span>
+          </div>
+          <div class="row">
+            <span class="key">SPESIALISASI</span>
+            <span class="val">Software Engineer / Cyber Security</span>
+          </div>
+          <div class="row">
+            <span class="key">STATUS SEGEL</span>
+            <span class="val sealed" id="sealStatus">TERSEGEL</span>
+          </div>
+        </div>
+
+        <!-- Open Trigger Button -->
+        <button type="button" class="unseal-trigger-btn" id="unsealTriggerBtn">
+          <span>PERIKSA DOKUMEN</span>
+        </button>
+
+        <!-- Live Reactive Surveillance Telemetry (Under Open Button Before Entering Document) -->
+        <div class="cover-telemetry-panel">
+          <div class="cover-telemetry-header">
+            <div>
+              <span class="pulse-dot-red"></span>
+              <span>TELEMETRI LINGKUNGAN &amp; PEMINDAIAN SISTEM</span>
+            </div>
+            <span>LOG KLIEN: LIVE</span>
+          </div>
+          <div class="cover-telemetry-body" id="intelBody"></div>
+        </div>
+
+        <div class="cover-foot-note">ARSIP INVESTIGASI RESMI • HAK CIPTA RENAISSANCE RICARDA • SELURUH DATA
+          TERVERIFIKASI</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       2. DESK BANNER & DESK CONTROLS (CLASSIFIED BAR)
+       ======================================================================== -->
+  <header class="classified-banner">
+    <div class="badge">KLASIFIKASI: RAHASIA // DOSSIER FILE</div>
+    <div class="device-indicator">
+      <span class="pulse-dot"></span>
+      <span id="deviceIndicatorText">MEMINDAI LINGKUNGAN KLIEN...</span>
+    </div>
+  </header>
+
+  <div class="desk-controls-bar">
+    <div class="desk-controls-inner">
+      <div class="folder-title-tag">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z" />
+        </svg>
+        <span>BERKAS INVESTIGASI RR-2026-014 (AKTIF)</span>
+      </div>
+
+      <div class="desk-action-buttons">
+        <a href="CV.pdf" download="CV-Renaissance-Ricarda.pdf" class="desk-action-btn download-cv-btn"
+          title="Unduh Curriculum Vitae resmi subjek (PDF)">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" />
+          </svg>
+          UNDUH CV (PDF)
+        </a>
+        <button type="button" class="desk-action-btn" id="recloseFolderBtn" title="Kembalikan ke sampul map berkas">
+          ↺ KEMBALI KE SAMPUL ARSIP
+        </button>
+        <button type="button" class="desk-action-btn" id="audioToggleBtn"
+          title="Aktifkan Efek Suara Mekanikal & Kertas">
+          AUDIO: MATI
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       3. PHYSICAL DOSSIER BINDER & SEPARATED PAPER SHEETS (TUMPUKAN KERTAS)
+       ======================================================================== -->
+  <main class="dossier-workspace">
+    <div class="manila-binder-backing">
+
+      <!-- Physical Folder Tab Dividers (Pindah Kertas / Navigasi Lembar) -->
+      <nav class="dossier-tab-row" role="tablist" aria-label="Navigasi Lembar Dokumen">
+        <button type="button" class="dossier-tab-btn active" role="tab" aria-selected="true" data-target="0">
+          <span>01. PROFIL</span>
+        </button>
+        <button type="button" class="dossier-tab-btn" role="tab" aria-selected="false" data-target="1">
+          <span>02. KAPABILITAS</span>
+        </button>
+        <button type="button" class="dossier-tab-btn" role="tab" aria-selected="false" data-target="2">
+          <span>03. REKAM KASUS</span>
+        </button>
+        <button type="button" class="dossier-tab-btn" role="tab" aria-selected="false" data-target="3">
+          <span>04. PENGALAMAN</span>
+        </button>
+        <button type="button" class="dossier-tab-btn" role="tab" aria-selected="false" data-target="4">
+          <span>05. SERTIFIKASI</span>
+        </button>
+        <button type="button" class="dossier-tab-btn" role="tab" aria-selected="false" data-target="5">
+          <span>06. TRANSMISI</span>
+        </button>
+      </nav>
+
+      <!-- The Stacking Deck for Physical Paper Sheets -->
+      <div class="paper-stack-deck" id="paperStackDeck">
+
+        <!-- ==================================================================
+             LEMBAR 01: PROFIL SUBJEK & BIOGRAFI SINGKAT
+             ================================================================== -->
+        <article class="paper-sheet active" id="sheet-0" data-index="0" role="tabpanel">
+          <div class="paper-watermark"></div>
+
+          <div class="sheet-meta-header">
+            <div>LEMBAR: <b>01 / 06</b> — BERKAS INVESTIGASI SUBJEK</div>
+          </div>
+
+          <!-- Red Stamp on Sheet -->
+          <div class="stamp">BERKAS AKTIF</div>
+
+          <div class="profile-grid">
+            <!-- Main Bio -->
+            <div class="profile-main">
+              <h1>Renaissance Ricarda Sugiarto Putra</h1>
+              <p class="role">Software Engineer · AI Enthusiast &amp; Cyber Security Enthusiast</p>
+
+              <div class="badge-tag-row">
+                <span class="dossier-pill active">● STATUS: AKTIF</span>
+                <span class="dossier-pill">PHP / Laravel / React</span>
+                <span class="dossier-pill">AI Agents &amp; C2</span>
+                <span class="dossier-pill">Penetration Testing &amp; OSINT</span>
+                <a href="CV.pdf" download="CV-Renaissance-Ricarda.pdf" class="dossier-pill cv-pill-btn"
+                  title="Unduh Berkas Curriculum Vitae Resmi Subjek">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" />
+                  </svg>
+                  <span>CV RESMI (PDF)</span>
+                </a>
+              </div>
+
+              <div class="profile-bio">
+                <p>
+                  Saya adalah Software Engineer dan Cyber Security enthusiast dengan fokus pada pembuatan sistem cerdas
+                  dan pengamanan aplikasi web end-to-end.
+                </p>
+                <p>
+                  Dengan fondasi kuat dalam metodologi <strong>penetration testing</strong>, perangkat
+                  <strong>OSINT</strong> (Maltego, PhoneInfoga), serta framework <strong>kecerdasan buatan</strong>
+                  (OpenClaw AI, Gemini, Grok), saya aktif mengembangkan proyek inovatif seperti asisten neural kustom
+                  <strong>A.R.O.N.A</strong> dan solusi web interaktif berperforma tinggi.
+                </p>
+                <p>
+                  Saya bergerak di persimpangan dua disiplin: pengembangan <span class="redact" tabindex="0"
+                    title="Laravel, React, PHP, SQL & UI Layout">full-stack web</span> dan rekayasa <span class="redact"
+                    tabindex="0" title="Auditing jaringan, OSINT, analisis malware & bug hunting">keamanan siber</span>
+                  — membangun sistem yang tidak hanya canggih, namun juga kokoh dari potensi eksploitasi.
+                </p>
+                <small class="hint-note">✦ Catatan Berkas: Teks berarsir hitam dapat dibuka dengan mengarahkan kursor
+                  atau menyentuh layar.</small>
+              </div>
+            </div>
+
+            <!-- Clipped Polaroid Photo Evidence -->
+            <div class="clipped-photo-wrapper">
+              <!-- Metallic Paperclip -->
+              <svg class="paperclip-svg" viewBox="0 0 28 58" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path
+                  d="M14 2 C21 2 26 7 26 16 L26 44 C26 51 21 56 14 56 C7 56 2 51 2 44 L2 18 C2 12 6 8 11 8 C16 8 18 12 18 18 L18 40 C18 44 16 46 13 46 C10 46 9 44 9 40 L9 18"
+                  fill="none" stroke="#2B2822" stroke-width="2.8" stroke-linecap="round" />
+                <path
+                  d="M14 2 C21 2 26 7 26 16 L26 44 C26 51 21 56 14 56 C7 56 2 51 2 44 L2 18 C2 12 6 8 11 8 C16 8 18 12 18 18 L18 40 C18 44 16 46 13 46 C10 46 9 44 9 40 L9 18"
+                  fill="none" stroke="#8E8574" stroke-width="1.6" stroke-linecap="round" />
+              </svg>
+
+              <!-- Clipped Polaroid Card (Interactive) -->
+              <div class="clipped-photo-card" id="inspectPhotoCard" tabindex="0" role="button"
+                aria-label="Perbesar foto bukti subjek penyelidikan">
+                <div class="photo-inner">
+                  <img src="assets/photo.jpeg" alt="Foto Subjek Penyelidikan Renaissance Ricarda" loading="eager">
+                </div>
+                <div class="photo-tape-label">
+                  <span>SUBJEK: RR-2026-014</span>
+                </div>
+                <div class="photo-click-instruction">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                      d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
+                  </svg>
+                  <span>KLIK UNTUK MEMERIKSA</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Compact Exclamation Mark Navigation Hint Widget (Interactive Toggle) -->
+          <div class="nav-hint-wrapper" id="navHintWrapper">
+            <button type="button" class="nav-hint-btn" id="navHintToggleBtn"
+              title="Klik untuk membuka/menutup petunjuk navigasi berkas"
+              aria-label="Buka atau tutup petunjuk navigasi berkas" aria-expanded="false">
+              <span class="nav-hint-badge">!</span>
+              <span class="nav-hint-caption">PETUNJUK NAVIGASI</span>
+            </button>
+            <div class="nav-hint-dropdown" id="navHintDropdown" role="tooltip">
+              <div class="nav-hint-text">
+                <strong>PETUNJUK NAVIGASI BERKAS:</strong> Buka lembar dengan tombol tab binder di atas, tombol di
+                bawah, tombol panah keyboard (← / →), atau usap layar (swipe).
+              </div>
+            </div>
+          </div>
+
+          <!-- Sheet Turner Footer -->
+          <div class="sheet-turner-bar">
+            <button type="button" class="turn-page-btn prev-sheet-btn" disabled>
+              ← LEMBAR SEBELUMNYA
+            </button>
+            <span class="sheet-pagination-indicator">LEMBAR 01 DARI 06</span>
+            <button type="button" class="turn-page-btn next-sheet-btn">
+              LEMBAR BERIKUTNYA (KAPABILITAS) →
+            </button>
+          </div>
+        </article>
+
+        <!-- ==================================================================
+             LEMBAR 02: EXHIBIT A — KAPABILITAS & KEAHLIAN TEKNIS
+             ================================================================== -->
+        <article class="paper-sheet" id="sheet-1" data-index="1" role="tabpanel">
+          <div class="paper-watermark"></div>
+
+          <div class="sheet-meta-header">
+            <div>LEMBAR: <b>02 / 06</b> — SPESIFIKASI TEKNIS &amp; KOMPETENSI</div>
+            <div class="sheet-exhibit-stamp">EXHIBIT A</div>
+          </div>
+
+          <h2 class="section-title">Kapabilitas &amp; Keahlian Teknis</h2>
+
+          <div class="expertise-grid">
+            <div class="dossier-card">
+              <span class="card-header-tag">KEAMANAN SIBER</span>
+              <h3>Cyber Security &amp; OSINT</h3>
+              <p>
+                Melacak jejak digital dan pola ancaman menggunakan alat OSINT (PhoneInfoga, Maltego), melakukan audit
+                jaringan mendalam, serta eksekusi penetration testing web dan analisis malware/RAT.
+              </p>
+              <div class="skill-pills">
+                <span class="skill-pill">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path
+                      d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z" />
+                  </svg>
+                  <span>Penetration Testing</span>
+                </span>
+                <span class="skill-pill">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path
+                      d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
+                  </svg>
+                  <span>Network Auditing</span>
+                </span>
+                <span class="skill-pill">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path
+                      d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
+                  </svg>
+                  <span>OSINT (Maltego, PhoneInfoga)</span>
+                </span>
+                <span class="skill-pill">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path
+                      d="M19 8h-1.81a5.985 5.985 0 0 0-1.82-1.96l.93-.93a.996.996 0 1 0-1.41-1.41l-1.47 1.47C12.78 5.06 12.4 5 12 5c-.4 0-.78.06-1.14.16L9.39 3.69a.996.996 0 1 0-1.41 1.41l.93.93C7.99 6.75 7.37 7.72 7.11 8.87L5.05 6.81a.996.996 0 1 0-1.41 1.41l1.83 1.83C5.17 10.67 5 11.31 5 12c0 .69.17 1.33.47 1.95L3.64 15.78a.996.996 0 1 0 1.41 1.41l2.06-2.06c.26 1.15.88 2.12 1.8 2.84l-.93.93a.996.996 0 1 0 1.41 1.41l1.47-1.47C11.22 18.94 11.6 19 12 19s.78-.06 1.14-.16l1.47 1.47a.996.996 0 1 0 1.41-1.41l-.93-.93c.92-.72 1.54-1.69 1.8-2.84l2.06 2.06a.996.996 0 1 0 1.41-1.41l-1.83-1.83c.3-.62.47-1.26.47-1.95 0-.69-.17-1.33-.47-1.95l1.83-1.83a.996.996 0 0 0-1.41-1.41l-2.06 2.06zM13 14h-2v-4h2v4z" />
+                  </svg>
+                  <span>Malware &amp; RAT Analysis</span>
+                </span>
+                <span class="skill-pill">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path
+                      d="M12 2C6.49 2 2 6.49 2 12s4.49 10 10 10 10-4.49 10-10S17.51 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
+                  </svg>
+                  <span>Bug Hunting</span>
+                </span>
+              </div>
+            </div>
+
+            <div class="dossier-card">
+              <span class="card-header-tag">KECERDASAN BUATAN</span>
+              <h3>Software &amp; AI Engineering</h3>
+              <p>
+                Membangun sistem otonom dan integrasi multi-LLM (OpenClaw AI, Gemini, Grok) dengan kapabilitas automated
+                fallback switching, neural assistant scripting, serta arsitektur Command &amp; Control (C2).
+              </p>
+              <div class="skill-pills">
+                <span class="skill-pill">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path
+                      d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z" />
+                  </svg>
+                  <span>Python</span>
+                </span>
+                <span class="skill-pill">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8L12 2z" />
+                  </svg>
+                  <span>Gemini &amp; Grok API</span>
+                </span>
+                <span class="skill-pill">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path
+                      d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1H2a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a7 7 0 0 1 7-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 0 1 2-2M7.5 13A2.5 2.5 0 0 0 5 15.5 2.5 2.5 0 0 0 7.5 18a2.5 2.5 0 0 0 2.5-2.5A2.5 2.5 0 0 0 7.5 13m9 0a2.5 2.5 0 0 0-2.5 2.5 2.5 2.5 0 0 0 2.5 2.5 2.5 2.5 0 0 0 2.5-2.5 2.5 2.5 0 0 0-2.5-2.5" />
+                  </svg>
+                  <span>OpenClaw AI Framework</span>
+                </span>
+                <span class="skill-pill">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path
+                      d="M20 4H4c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm-9 14H5v-2h6v2zm7.5-6.5l-4.5 4.5-1.41-1.41L15.67 12l-3.08-3.09 1.41-1.41 4.5 4.5z" />
+                  </svg>
+                  <span>Terminal Scripting</span>
+                </span>
+                <span class="skill-pill">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path
+                      d="M4 6h16V4H4c-1.1 0-2 .9-2 2v11H0v3h14v-3H4V6zm19 2h-6c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h6c.55 0 1-.45 1-1V9c0-.55-.45-1-1-1zm-1 10h-4v-7h4v7z" />
+                  </svg>
+                  <span>C2 Setup &amp; Automation</span>
+                </span>
+              </div>
+            </div>
+
+            <div class="dossier-card">
+              <span class="card-header-tag">PENGEMBANGAN WEB</span>
+              <h3>Full-Stack Web Development</h3>
+              <p>
+                Merancang aplikasi web tangguh dan responsif dari ujung ke ujung memanfaatkan ekosistem modern Laravel,
+                React, PHP murni, dan arsitektur database relasional yang terstruktur.
+              </p>
+              <div class="skill-pills">
+                <span class="skill-pill">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path
+                      d="M4 3h16c1.1 0 2 .9 2 2v14c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V5c0-1.1.9-2 2-2zm8 15l5-5-1.41-1.41L12 15.17l-2.59-2.58L8 14l4 4z" />
+                  </svg>
+                  <span>PHP &amp; Laravel</span>
+                </span>
+                <span class="skill-pill">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path
+                      d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z" />
+                  </svg>
+                  <span>React.js</span>
+                </span>
+                <span class="skill-pill">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path
+                      d="M12 3C7.58 3 4 4.79 4 7v10c0 2.21 3.58 4 8 4s8-1.79 8-4V7c0-2.21-3.58-4-8-4zm0 2c3.87 0 6 1.5 6 2s-2.13 2-6 2-6-1.5-6-2 2.13-2 6-2zm0 14c-3.87 0-6-1.5-6-2v-1.23c1.47.78 3.63 1.23 6 1.23s4.53-.45 6-1.23V17c0 .5-2.13 2-6 2zm0-5c-3.87 0-6-1.5-6-2v-1.23c1.47.78 3.63 1.23 6 1.23s4.53-.45 6-1.23V12c0 .5-2.13 2-6 2z" />
+                  </svg>
+                  <span>Database Design (SQL)</span>
+                </span>
+                <span class="skill-pill">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path
+                      d="M12 2l-1 2H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-6l-1-2zm7 16H5V6h14v12z" />
+                  </svg>
+                  <span>HTML5 &amp; Vanilla CSS3</span>
+                </span>
+                <span class="skill-pill">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path
+                      d="M4 6h18V4H4c-1.1 0-2 .9-2 2v11H0v3h14v-3H4V6zm19 2h-6c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h6c.55 0 1-.45 1-1V9c0-.55-.45-1-1-1zm-1 10h-4v-7h4v7z" />
+                  </svg>
+                  <span>Responsive UI Layouts</span>
+                </span>
+              </div>
+            </div>
+
+            <div class="dossier-card">
+              <span class="card-header-tag">METODOLOGI &amp; PENGUJIAN</span>
+              <h3>Quality Assurance &amp; Toolchain</h3>
+              <p>
+                Memastikan stabilitas dan keandalan sistem melalui metode pengujian White/Gray/Black Box komprehensif,
+                pelaporan terstruktur, serta kolaborasi berbasis Git &amp; VS Code.
+              </p>
+              <div class="skill-pills">
+                <span class="skill-pill">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path
+                      d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z" />
+                  </svg>
+                  <span>White / Gray / Black Box</span>
+                </span>
+                <span class="skill-pill">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path
+                      d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z" />
+                  </svg>
+                  <span>System Troubleshooting</span>
+                </span>
+                <span class="skill-pill">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path
+                      d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z" />
+                  </svg>
+                  <span>Git &amp; GitHub</span>
+                </span>
+                <span class="skill-pill">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path
+                      d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z" />
+                  </svg>
+                  <span>Visual Studio Code</span>
+                </span>
+                <span class="skill-pill">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path
+                      d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z" />
+                  </svg>
+                  <span>Google Workspace</span>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sheet Turner Footer -->
+          <div class="sheet-turner-bar">
+            <button type="button" class="turn-page-btn prev-sheet-btn">
+              ← LEMBAR 01 (PROFIL)
+            </button>
+            <span class="sheet-pagination-indicator">LEMBAR 02 DARI 06</span>
+            <button type="button" class="turn-page-btn next-sheet-btn">
+              LEMBAR 03 (REKAM KASUS) →
+            </button>
+          </div>
+        </article>
+
+        <!-- ==================================================================
+             LEMBAR 03: EXHIBIT B — CATATAN KASUS & PRESTASI UTAMA
+             ================================================================== -->
+        <article class="paper-sheet" id="sheet-2" data-index="2" role="tabpanel">
+          <div class="paper-watermark"></div>
+
+          <div class="sheet-meta-header">
+            <div>LEMBAR: <b>03 / 06</b> — LOG OPERASIONAL &amp; PRESTASI</div>
+            <div class="sheet-exhibit-stamp">EXHIBIT B</div>
+          </div>
+
+          <h2 class="section-title">Catatan Kasus &amp; Prestasi Utama</h2>
+
+          <div class="case-log-list">
+            <div class="case-log-item">
+              <div class="case-date">
+                <span>2026 / 05</span>
+                <div style="margin-top: 4px; font-size: 10px; color: var(--stamp); font-weight: 700;">JUARA 1</div>
+              </div>
+              <div class="case-content">
+                <h3>Juara 1 Web Technologies Competition (Tingkat Kabupaten)</h3>
+                <div class="case-star-block">
+                  <div class="star-row">
+                    <span class="star-label">TANTANGAN:</span>
+                    <span class="star-desc">Membangun aplikasi web fungsional berstandar industri secara solo dari nol
+                      di bawah batasan waktu ketat dan kriteria penilaian pengujian yang presisi.</span>
+                  </div>
+                  <div class="star-row">
+                    <span class="star-label">SOLUSI TEKNIS:</span>
+                    <span class="star-desc">Merancang arsitektur web tangguh, tata letak antarmuka responsif tanpa
+                      ketergantungan library berlebih, validasi keamanan input end-to-end, dan optimasi performa
+                      rendering instan.</span>
+                  </div>
+                  <div class="star-row">
+                    <span class="star-label">HASIL &amp; DAMPAK:</span>
+                    <span class="star-desc">Meraih Peringkat 1 Tingkat Kabupaten Indramayu dan terpilih sebagai delegasi
+                      tunggal mewakili daerah ke kompetisi tingkat Provinsi Jawa Barat.</span>
+                  </div>
+                </div>
+                <div class="case-tags">
+                  <span class="case-tag">#WebCompetition</span>
+                  <span class="case-tag">#SoloDeveloper</span>
+                  <span class="case-tag">#FirstPlaceWinner</span>
+                </div>
+                <div class="case-actions">
+                  <a href="https://drive.google.com/file/d/17ch0JHqmAkkhO_BnhzpCTzzLfyMueZFD/view?usp=drive_link"
+                    target="_blank" rel="noopener" class="case-action-btn"
+                    title="Buka berkas bukti sertifikat penghargaan Juara 1 di Google Drive">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <path
+                        d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z" />
+                    </svg>
+                    <span>LIHAT SERTIFIKAT DI GOOGLE DRIVE</span>
+                    <span class="arrow-indicator">↗</span>
+                  </a>
+                  <span class="case-action-badge offline"
+                    title="Kompetisi langsung di tempat (on-site) tanpa repositori publik">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <path
+                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z" />
+                    </svg>
+                    <span>KOMPETISI ON-SITE</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="case-log-item">
+              <div class="case-date">
+                <span>2026 / RUNNING</span>
+                <div style="margin-top: 4px; font-size: 10px; color: var(--navy); font-weight: 700;">PROYEK AI</div>
+              </div>
+              <div class="case-content">
+                <h3>Creator of A.R.O.N.A (Artificial Real-time Observer &amp; Neural Assistant)</h3>
+                <div class="case-star-block">
+                  <div class="star-row">
+                    <span class="star-label">TANTANGAN:</span>
+                    <span class="star-desc">Kebutuhan sistem asistensi mandiri untuk memitigasi kelelahan fisik
+                      pengembang (*digital fatigue*) akibat screen time berlebih, serta penanganan komunikasi kritis
+                      yang sering terlewat saat *deep-work*.</span>
+                  </div>
+                  <div class="star-row">
+                    <span class="star-label">SOLUSI TEKNIS:</span>
+                    <span class="star-desc">Mengembangkan observer berbasis Python dengan integrasi computer vision
+                      (webcam real-time), algoritma automated break-reminder, dan integrasi neural bot untuk pembacaan
+                      serta pembalasan otomatis pesan WhatsApp.</span>
+                  </div>
+                  <div class="star-row">
+                    <span class="star-label">HASIL &amp; DAMPAK:</span>
+                    <span class="star-desc">Beroperasi secara otonom di workstation lokal, meningkatkan disiplin waktu
+                      kerja sehat, serta mengotomatisasi interaksi transmisi pesan tanpa intervensi manual.</span>
+                  </div>
+                </div>
+                <div class="case-tags">
+                  <span class="case-tag">#NeuralAssistant</span>
+                  <span class="case-tag">#ComputerVision</span>
+                  <span class="case-tag">#AutomatedObserver</span>
+                </div>
+                <div class="case-actions">
+                  <a href="https://github.com/Noolep/Project-A.R.O.N.A" target="_blank" rel="noopener"
+                    class="case-action-btn" title="Akses repositori GitHub pengembang untuk A.R.O.N.A">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <path
+                        d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z" />
+                    </svg>
+                    <span>LIHAT REPOSITORI GITHUB</span>
+                    <span class="arrow-indicator">↗</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sheet Turner Footer -->
+          <div class="sheet-turner-bar">
+            <button type="button" class="turn-page-btn prev-sheet-btn">
+              ← LEMBAR 02 (KAPABILITAS)
+            </button>
+            <span class="sheet-pagination-indicator">LEMBAR 03 DARI 06</span>
+            <button type="button" class="turn-page-btn next-sheet-btn">
+              LEMBAR 04 (PENGALAMAN) →
+            </button>
+          </div>
+        </article>
+
+        <!-- ==================================================================
+             LEMBAR 04: EXHIBIT C — PENGALAMAN PROFESIONAL & PENDIDIKAN
+             ================================================================== -->
+        <article class="paper-sheet" id="sheet-3" data-index="3" role="tabpanel">
+          <div class="paper-watermark"></div>
+
+          <div class="sheet-meta-header">
+            <div>LEMBAR: <b>04 / 06</b> — RIWAYAT KARIR &amp; PENDIDIKAN</div>
+            <div class="sheet-exhibit-stamp">EXHIBIT C</div>
+          </div>
+
+          <h2 class="section-title">Pengalaman Profesional &amp; Riwayat Pendidikan</h2>
+
+          <div class="timeline-list">
+            <div class="timeline-card">
+              <div class="timeline-meta">
+                <h3 class="timeline-title">Active Participant &amp; Developer</h3>
+                <span class="timeline-period">Juli 2026 – September 2026</span>
+              </div>
+              <div class="timeline-org">Google Skills Arcade &amp; Elite Academy</div>
+              <ul>
+                <li>Mengikuti program akselerasi pengembang secara intensif untuk meningkatkan standar teknis rekayasa
+                  perangkat lunak dan arsitektur agen modern.</li>
+                <li>Menyelesaikan berbagai sertifikasi resmi spesialisasi AI, Gemini Enterprise, dan cloud development.
+                </li>
+              </ul>
+            </div>
+
+            <div class="timeline-card">
+              <div class="timeline-meta">
+                <h3 class="timeline-title">#JuaraVibeCoding Participant</h3>
+                <span class="timeline-period">Mei 2026</span>
+              </div>
+              <div class="timeline-org">Google Developer Groups</div>
+              <ul>
+                <li>Terlibat aktif dalam program Vibe Coding Study Jam untuk merealisasikan ide-ide inovatif berbasis
+                  kecerdasan buatan.</li>
+                <li>Mengadopsi paradigma pengembangan modern <em>"Code less, build more"</em> untuk memaksimalkan
+                  efisiensi dan kecepatan delivery aplikasi.</li>
+              </ul>
+            </div>
+
+            <div class="timeline-card">
+              <div class="timeline-meta">
+                <h3 class="timeline-title">Rekayasa Perangkat Lunak (Software Engineering)</h3>
+                <span class="timeline-period">Juni 2024 – Juni 2027</span>
+              </div>
+              <div class="timeline-org">SMKN 2 Indramayu (Vocational School 2 Indramayu)</div>
+              <ul>
+                <li>Memperdalam fondasi fundamental pemrograman berorientasi objek (OOP), perancangan sistem database
+                  relasional, dan desain antarmuka responsif.</li>
+                <li>Mendapatkan pengalaman praktis intensif dalam membangun serta memecahkan kendala (troubleshooting)
+                  aplikasi full-stack.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Sheet Turner Footer -->
+          <div class="sheet-turner-bar">
+            <button type="button" class="turn-page-btn prev-sheet-btn">
+              ← LEMBAR 03 (REKAM KASUS)
+            </button>
+            <span class="sheet-pagination-indicator">LEMBAR 04 DARI 06</span>
+            <button type="button" class="turn-page-btn next-sheet-btn">
+              LEMBAR 05 (SERTIFIKASI) →
+            </button>
+          </div>
+        </article>
+
+        <!-- ==================================================================
+             LEMBAR 05: EXHIBIT D — SERTIFIKASI & KLIRENS KEAMANAN
+             ================================================================== -->
+        <article class="paper-sheet" id="sheet-4" data-index="4" role="tabpanel">
+          <div class="paper-watermark"></div>
+
+          <div class="sheet-meta-header">
+            <div>LEMBAR: <b>05 / 06</b> — DOKUMEN KLIRENS &amp; SERTIFIKAT</div>
+            <div class="sheet-exhibit-stamp">EXHIBIT D</div>
+          </div>
+
+          <h2 class="section-title">Sertifikasi &amp; Klirens Keamanan</h2>
+
+          <div class="clearance-table-wrapper">
+            <table class="clearance-table">
+              <thead>
+                <tr>
+                  <th>SERTIFIKASI / KLIRENS</th>
+                  <th>PENYELENGGARA RESMI</th>
+                  <th>PERIODE</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="cert-name">
+                    <a href="https://drive.google.com/file/d/1PM4fbrl9NvsaDP8pWl5sJUkjPGKVMrdz/view?usp=drive_link"
+                      target="_blank" rel="noopener" class="cert-link"
+                      title="Buka berkas bukti kredensial di Google Drive">
+                      <span>AI Ready ASEAN Completion (12-hours)</span>
+                      <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path
+                          d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3zM5 5h6V3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-6h-2v6H5V5z" />
+                      </svg>
+                    </a>
+                  </td>
+                  <td class="cert-issuer">ASEAN Foundation &amp; Google.org</td>
+                  <td class="cert-date">Juli 2026</td>
+                </tr>
+                <tr>
+                  <td class="cert-name">
+                    <a href="https://drive.google.com/file/d/1CXWn3Amh2Gqfq-B5m4S89NpH3aWKFQY7/view?usp=drive_link"
+                      target="_blank" rel="noopener" class="cert-link"
+                      title="Buka berkas bukti kredensial di Google Drive">
+                      <span>Can AI Find You? Unlocking Generative Engine Optimization</span>
+                      <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path
+                          d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3zM5 5h6V3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-6h-2v6H5V5z" />
+                      </svg>
+                    </a>
+                  </td>
+                  <td class="cert-issuer">Binus University</td>
+                  <td class="cert-date">Agustus 2026</td>
+                </tr>
+                <tr>
+                  <td class="cert-name">
+                    <a href="https://drive.google.com/file/d/1pT0wT0rb6osYNRNHs82eW1Hj8I2Bg0b_/view?usp=drive_link"
+                      target="_blank" rel="noopener" class="cert-link"
+                      title="Buka berkas bukti kredensial di Google Drive">
+                      <span>Vibe Coding Study Jam (#JuaraVibeCoding)</span>
+                      <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path
+                          d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3zM5 5h6V3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-6h-2v6H5V5z" />
+                      </svg>
+                    </a>
+                  </td>
+                  <td class="cert-issuer">Google Developer Groups</td>
+                  <td class="cert-date">Mei 2026</td>
+                </tr>
+                <tr>
+                  <td class="cert-name">
+                    <a href="https://developers.google.com/profile/badges/community/gear/agent-intro?u=107822256901936787837"
+                      target="_blank" rel="noopener" class="cert-link"
+                      title="Buka berkas bukti kredensial di Google Drive">
+                      <span>GEAR — Intro to Agents</span>
+                      <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path
+                          d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3zM5 5h6V3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-6h-2v6H5V5z" />
+                      </svg>
+                    </a>
+                  </td>
+                  <td class="cert-issuer">Google Developer Program</td>
+                  <td class="cert-date">2026</td>
+                </tr>
+                <tr>
+                  <td class="cert-name">
+                    <a href="https://developers.google.com/profile/badges/community/gear?u=107822256901936787837"
+                      target="_blank" rel="noopener" class="cert-link"
+                      title="Buka berkas bukti kredensial di Google Drive">
+                      <span>Gemini Enterprise Agent Ready</span>
+                      <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path
+                          d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3zM5 5h6V3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-6h-2v6H5V5z" />
+                      </svg>
+                    </a>
+                  </td>
+                  <td class="cert-issuer">Google Developer Program</td>
+                  <td class="cert-date">2026</td>
+                </tr>
+                <tr>
+                  <td class="cert-name">
+                    <a href="https://developers.google.com/profile/badges/community/get-certified-26-edition-3?u=107822256901936787837"
+                      target="_blank" rel="noopener" class="cert-link"
+                      title="Buka berkas bukti kredensial di Google Drive">
+                      <span>Get Certified Application</span>
+                      <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path
+                          d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3zM5 5h6V3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-6h-2v6H5V5z" />
+                      </svg>
+                    </a>
+                  </td>
+                  <td class="cert-issuer">Google Developer Program</td>
+                  <td class="cert-date">2026</td>
+                </tr>
+                <tr>
+                  <td class="cert-name">
+                    <a href="https://drive.google.com/file/d/1gCwTzKc2vjJqKTGuzokYPnyPVxdDKdsR/view?usp=drive_link"
+                      target="_blank" rel="noopener" class="cert-link"
+                      title="Buka berkas bukti kredensial di Google Drive">
+                      <span>KID#2 Clash of Cyber Heist — Participant</span>
+                      <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path
+                          d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3zM5 5h6V3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-6h-2v6H5V5z" />
+                      </svg>
+                    </a>
+                  </td>
+                  <td class="cert-issuer">Telkom Corporate University / indibiz</td>
+                  <td class="cert-date">November 2025</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Prominent Drive Archive Link Card for Viewing More Certificates -->
+          <div class="cert-drive-archive-card">
+            <div class="cert-drive-info">
+              <div class="cert-drive-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path
+                    d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zm-5-7h-4v4h4v-4zm-4-2V7h4v3h-4z" />
+                </svg>
+              </div>
+              <div>
+                <h4>REPOSITORI ARSIP LENGKAP // GOOGLE DRIVE</h4>
+                <p>Klik tombol di samping untuk membuka repositori Google Drive yang memuat seluruh arsip sertifikat
+                  keahlian, lisensi resmi, dan bukti kompetisi lainnya.</p>
+              </div>
+            </div>
+            <a href="https://drive.google.com/drive/folders/1HnLFQHeEwRByvCCAicZ1UcuoUTBfsqn6?usp=drive_link"
+              target="_blank" rel="noopener" class="cert-drive-btn" id="driveArchiveBtn"
+              title="Buka folder seluruh sertifikat di Google Drive">
+              <span>LIHAT LEBIH BANYAK DI GOOGLE DRIVE</span>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path
+                  d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3zM5 5h6V3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-6h-2v6H5V5z" />
+              </svg>
+            </a>
+          </div>
+
+          <!-- Sheet Turner Footer -->
+          <div class="sheet-turner-bar">
+            <button type="button" class="turn-page-btn prev-sheet-btn">
+              ← LEMBAR 04 (PENGALAMAN)
+            </button>
+            <span class="sheet-pagination-indicator">LEMBAR 05 DARI 06</span>
+            <button type="button" class="turn-page-btn next-sheet-btn">
+              LEMBAR 06 (TRANSMISI) →
+            </button>
+          </div>
+        </article>
+
+        <!-- ==================================================================
+             LEMBAR 06: PENUTUP BERKAS — TRANSMISI & KONTAK LANGSUNG
+             ================================================================== -->
+        <article class="paper-sheet" id="sheet-5" data-index="5" role="tabpanel">
+          <div class="paper-watermark"></div>
+
+          <div class="sheet-meta-header">
+            <div>LEMBAR: <b>06 / 06</b> — SALURAN TRANSMISI &amp; PENUTUP BERKAS</div>
+            <div class="sheet-exhibit-stamp">PENUTUP</div>
+          </div>
+
+          <h2 class="section-title">Transmisi &amp; Kontak Langsung</h2>
+
+          <div class="transmission-layout-grid">
+            <!-- Left Column: Direct Channels & Meta -->
+            <div class="transmission-card">
+              <div class="transmission-card-header">
+                <span class="pulse-dot"></span>
+                <span>SALURAN KOMUNIKASI RESMI</span>
+              </div>
+              <p class="intro">
+                Untuk diskusi proyek pengembangan sistem, kolaborasi rekayasa perangkat lunak, uji keamanan siber, atau
+                sekadar bertukar wawasan seputar arsitektur AI — silakan hubungi melalui saluran transmisi
+                terverifikasi:
+              </p>
+
+              <div class="transmission-lines">
+                <div class="transmission-line">
+                  <span class="channel-name">EMAIL RESMI</span>
+                  <a href="mailto:renaissancericharda@gmail.com">renaissancericharda@gmail.com</a>
+                </div>
+                <div class="transmission-line">
+                  <span class="channel-name">WHATSAPP</span>
+                  <a href="https://wa.me/6285189512511" target="_blank" rel="noopener">+62 851-8951-2511</a>
+                </div>
+                <div class="transmission-line">
+                  <span class="channel-name">LINKEDIN</span>
+                  <a href="https://linkedin.com/in/renaissancericarda" target="_blank"
+                    rel="noopener">linkedin.com/in/renaissancericarda</a>
+                </div>
+                <div class="transmission-line">
+                  <span class="channel-name">GITHUB</span>
+                  <a href="https://github.com/Noolep" target="_blank" rel="noopener">github.com/Noolep</a>
+                </div>
+                <div class="transmission-line">
+                  <span class="channel-name">INSTAGRAM</span>
+                  <a href="https://www.instagram.com/rcrd06._/" target="_blank" rel="noopener">@rcrd06._</a>
+                </div>
+                <div class="transmission-line">
+                  <span class="channel-name">LOKASI FISIK</span>
+                  <span style="color: var(--ink); font-weight: 500;">Indramayu, Jawa Barat, Indonesia (WIB /
+                    UTC+7)</span>
+                </div>
+                <div class="transmission-line">
+                  <span class="channel-name">BAHASA</span>
+                  <span style="color: var(--ink); font-weight: 500;">Bahasa Indonesia (Native), English (Working
+                    Proficiency)</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Column: Direct Encrypted Dispatch Contact Form -->
+            <div class="contact-dispatch-panel">
+              <div class="dispatch-header">
+                <div class="dispatch-title">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path
+                      d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                  </svg>
+                  <span>FORMULIR TRANSMISI LANGSUNG // DISPATCH</span>
+                </div>
+                <span class="dispatch-status-badge">ONLINE</span>
+              </div>
+
+              <form action="https://api.web3forms.com/submit" method="POST" class="dispatch-form"
+                id="contactDispatchForm">
+                <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE" id="web3FormsKey">
+                <input type="hidden" name="subject" value="Transmisi Pesan Portofolio RR-2026-014">
+                <input type="hidden" name="from_name" value="Portofolio RR-2026-014 Dispatcher">
+
+                <div class="form-group">
+                  <label for="senderName" class="form-label">NAMA LENGKAP / IDENTITAS PENGIRIM *</label>
+                  <input type="text" id="senderName" name="name" class="form-input"
+                    placeholder="contoh: John Doe / Recruiter Tech" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="senderEmail" class="form-label">ALAMAT EMAIL RESMI UNTUK BALASAN *</label>
+                  <input type="email" id="senderEmail" name="email" class="form-input"
+                    placeholder="contoh: recruiter@company.com" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="senderTopic" class="form-label">KLASIFIKASI SUBJEK / TOPIK</label>
+                  <select id="senderTopic" name="topic" class="form-input form-select">
+                    <option value="Tawaran Kolaborasi / Kerja">Tawaran Kolaborasi Proyek / Rekrutmen</option>
+                    <option value="Uji Keamanan / Pentest">Audit Keamanan Siber / Penetration Testing</option>
+                    <option value="Konsultasi AI / Rekayasa Perangkat Lunak">Diskusi Rekayasa AI &amp; Software</option>
+                    <option value="Lainnya">Lainny</option>
+                  </select>
+                </div>
+
+                <!-- Custom Topic Input Field (Shown dynamically when 'Lainnya' is selected) -->
+                <div class="form-group" id="customTopicGroup" style="display: none;">
+                  <label for="customTopicInput" class="form-label">
+                    <span style="color: var(--stamp);">●</span> TULISKAN SUBJEK KUSTOM ANDA *
+                  </label>
+                  <input type="text" id="customTopicInput" name="custom_topic" class="form-input custom-topic-focus"
+                    placeholder="Ketikkan topik atau perihal spesifik yang ingin didiskusikan...">
+                </div>
+
+                <div class="form-group">
+                  <label for="senderMessage" class="form-label">ISI TRANSMISI DOKUMEN / PESAN *</label>
+                  <textarea id="senderMessage" name="message" rows="4" class="form-input form-textarea"
+                    placeholder="Tuliskan pesan, rincian proyek, atau tawaran Anda di sini..." required></textarea>
+                </div>
+
+                <div class="dispatch-action-row">
+                  <button type="submit" class="dispatch-submit-btn" id="dispatchSubmitBtn">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+                    </svg>
+                    <span>KIRIMKAN TRANSMISI PESAN</span>
+                  </button>
+                  <span class="dispatch-form-status" id="dispatchFormStatus"></span>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- Sheet Turner Footer -->
+          <div class="sheet-turner-bar">
+            <button type="button" class="turn-page-btn prev-sheet-btn">
+              ← LEMBAR 05 (SERTIFIKASI)
+            </button>
+            <span class="sheet-pagination-indicator">LEMBAR 06 DARI 06</span>
+            <button type="button" class="turn-page-btn next-sheet-btn" disabled>
+              AKHIR DOKUMEN BERKAS
+            </button>
+          </div>
+        </article>
+
+      </div><!-- /.paper-stack-deck -->
+
+    </div><!-- /.manila-binder-backing -->
+  </main>
+
+  <!-- ========================================================================
+       4. PHOTO EVIDENCE INSPECTION MODAL (LIGHTBOX ZOOM ANIMATION)
+       ======================================================================== -->
+  <div class="photo-modal-backdrop" id="photoModal" role="dialog" aria-modal="true" aria-labelledby="modalSubjectTitle">
+    <div class="photo-modal-dialog">
+      <div class="photo-modal-header">
+        <span>INSPEKSI BUKTI VISUAL // CASE RR-2026-014</span>
+        <button type="button" class="modal-close-btn" id="modalCloseBtn" aria-label="Tutup Inspeksi">[ ESC / TUTUP
+          ]</button>
+      </div>
+      <div class="photo-modal-content">
+        <div class="modal-photo-frame">
+          <img src="assets/photo.jpeg" alt="Bukti Foto Subjek Resolusi Tinggi">
+        </div>
+        <div class="modal-metadata">
+          <h4 id="modalSubjectTitle">Renaissance Ricarda Sugiarto Putra</h4>
+          <p style="color: var(--muted); margin-bottom: 12px; font-size: 11px;">IDENTIFIKASI REKAM PENYELIDIKAN RESMI
+          </p>
+
+          <div class="modal-meta-row">
+            <span class="label">SUBJEK:</span>
+            <span class="value">Software Engineer / Cyber Security</span>
+          </div>
+          <div class="modal-meta-row">
+            <span class="label">LOKASI:</span>
+            <span class="value">Indramayu, Jawa Barat, Indonesia</span>
+          </div>
+          <div class="modal-meta-row">
+            <span class="label">KOMPETENSI:</span>
+            <span class="value">Full-Stack, OSINT, AI Neural Assisting</span>
+          </div>
+          <div class="modal-meta-row">
+            <span class="label">INTEGRITAS:</span>
+            <span class="value" style="color: #15803d;">TERVERIFIKASI (SHA-256 VALID)</span>
+          </div>
+          <div class="modal-meta-row">
+            <span class="label">INSTITUSI:</span>
+            <span class="value">SMKN 2 Indramayu (Software Eng.)</span>
+          </div>
+          <p style="margin-top: 14px; font-size: 11px; color: var(--muted);">
+            Klik area di luar berkas atau tekan tombol ESC untuk kembali ke dokumen investigasi.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Classification Bar -->
+  <footer class="classified-banner" style="justify-content: center;">
+    <div class="badge">KLASIFIKASI: RAHASIA // CONFIDENTIAL</div>
+  </footer>
+
+  <!-- Core Scripts -->
+  <script src="js/main.js"></script>
+</body>
+
+</html>
