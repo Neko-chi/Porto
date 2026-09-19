@@ -2012,72 +2012,331 @@ td.cert-date {
    8. RESPONSIVE DESIGN (MOBILE & TABLET ADAPTATION)
    ========================================================================== */
 @media (max-width: 768px) {
+
+  /* --- Cover / Folder Intro --- */
+  .manila-closed-folder {
+    padding: 36px 12px 40px;
+  }
+
+  .folder-top-tab {
+    left: 12px;
+    padding: 6px 14px;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+  }
+
+  .cover-body-container {
+    width: 96vw;
+    padding: 6px 0;
+  }
+
+  .cover-stamp-box {
+    padding: 14px 10px 12px;
+    margin-bottom: 16px;
+    border-width: 3px;
+  }
+
+  .cover-stamp-box h2 {
+    font-size: clamp(22px, 8vw, 36px);
+    letter-spacing: 3px;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .cover-stamp-box p {
+    font-size: 9.5px;
+    letter-spacing: 1px;
+  }
+
+  .cover-file-dossier-info {
+    padding: 12px 14px;
+  }
+
+  .cover-file-dossier-info .row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    padding: 6px 0;
+  }
+
+  .cover-file-dossier-info .val {
+    text-align: left;
+    font-size: 13px;
+  }
+
+  .unseal-trigger-btn {
+    padding: 14px 16px;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+  }
+
+  .cover-telemetry-panel {
+    margin-top: 16px;
+  }
+
+  .cover-telemetry-header {
+    padding: 6px 12px;
+    font-size: 10px;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .cover-telemetry-body {
+    padding: 8px 12px;
+    font-size: 11px;
+  }
+
+  .cover-telemetry-body .surveillance-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1px;
+    padding: 4px 0;
+  }
+
+  .cover-telemetry-body .surveillance-row .val {
+    text-align: left;
+  }
+
+  .cover-foot-note {
+    font-size: 9px;
+    letter-spacing: 1px;
+    margin-top: 16px;
+  }
+
+  /* --- Classified Banner & Desk Controls --- */
+  .classified-banner {
+    padding: 6px 10px;
+    font-size: 9.5px;
+    letter-spacing: 0.12em;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .classified-banner .badge {
+    font-size: 8.5px;
+    padding: 1px 5px;
+  }
+
+  .device-indicator {
+    font-size: 9.5px;
+  }
+
+  .desk-controls-bar {
+    padding: 8px 10px;
+  }
+
+  .desk-controls-inner {
+    padding: 0;
+    gap: 8px;
+  }
+
+  .folder-title-tag {
+    font-size: 10px;
+    gap: 5px;
+  }
+
+  .folder-title-tag svg {
+    width: 13px;
+    height: 13px;
+  }
+
+  .desk-action-buttons {
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .desk-action-btn {
+    font-size: 10px;
+    padding: 4px 8px;
+    gap: 4px;
+  }
+
+  /* --- Dossier Workspace & Binder --- */
   .dossier-workspace {
-    padding: 10px 6px 60px;
+    padding: 8px 4px 50px;
   }
 
   .manila-binder-backing {
-    padding: 8px 6px 14px;
+    padding: 6px 4px 12px;
     border-radius: 6px;
+    border-width: 1.5px;
   }
 
+  /* --- Tab System (Horizontally Scrollable) --- */
+  .dossier-tab-row {
+    gap: 3px;
+    padding: 0 4px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .dossier-tab-btn {
+    padding: 7px 10px 6px;
+    font-size: 10px;
+    letter-spacing: 0.04em;
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  /* --- Paper Sheet (Content Area) --- */
   .paper-sheet {
-    padding: 22px 14px 28px;
-    border-radius: 4px;
+    padding: 18px 12px 24px;
+    border-radius: 0 4px 4px 4px;
   }
 
-  /* Hide physical binder holes on small screens for maximum text readability */
   .paper-sheet::before {
     display: none;
   }
 
+  /* --- Sheet Header --- */
+  .sheet-meta-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    padding-bottom: 10px;
+    margin-bottom: 18px;
+    font-size: 10px;
+  }
+
+  .sheet-exhibit-stamp {
+    font-size: 10px;
+    padding: 2px 6px;
+  }
+
+  /* --- Section Titles --- */
+  h2.section-title {
+    font-size: 1.4rem;
+    margin-bottom: 18px;
+  }
+
+  /* --- Sheet 01: Profile --- */
+  .stamp {
+    position: static;
+    display: inline-block;
+    margin-bottom: 12px;
+    transform: rotate(-3deg);
+    font-size: 11px;
+    padding: 4px 10px;
+  }
+
   .profile-grid {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 16px;
   }
 
   .clipped-photo-wrapper {
     order: -1;
-    margin: 0 auto 10px;
+    margin: 0 auto 8px;
   }
 
-  .stamp {
-    position: static;
-    display: inline-block;
-    margin-bottom: 14px;
-    transform: rotate(-3deg);
+  .profile-main h1 {
+    font-size: 1.6rem;
   }
 
+  .profile-main .role {
+    font-size: 1rem;
+  }
+
+  .badge-tag-row {
+    gap: 6px;
+    margin: 12px 0;
+  }
+
+  .dossier-pill {
+    font-size: 10px;
+    padding: 2px 7px;
+  }
+
+  .profile-bio {
+    font-size: 0.92rem;
+  }
+
+  .profile-bio p {
+    margin-bottom: 10px;
+  }
+
+  .hint-note {
+    font-size: 11px;
+  }
+
+  /* Navigation Hint Widget */
+  .nav-hint-btn {
+    font-size: 10px;
+    padding: 3px 10px 3px 4px;
+  }
+
+  .nav-hint-tooltip {
+    font-size: 10px;
+    max-width: 260px;
+  }
+
+  /* Surveillance Panel on Sheet 1 */
+  .surveillance-panel {
+    margin-top: 20px;
+  }
+
+  .surveillance-panel-header {
+    padding: 6px 12px;
+    font-size: 10px;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .surveillance-body {
+    padding: 8px 12px 10px;
+    font-size: 11px;
+  }
+
+  .surveillance-row {
+    grid-template-columns: 110px 1fr;
+    gap: 6px;
+    font-size: 11px;
+    padding: 3px 0;
+  }
+
+  /* --- Sheet 02: Expertise Grid --- */
   .expertise-grid {
     grid-template-columns: 1fr;
     gap: 14px;
   }
 
+  .dossier-card {
+    padding: 16px;
+  }
+
+  .dossier-card h3 {
+    font-size: 1.05rem;
+  }
+
+  .dossier-card p {
+    font-size: 0.9rem;
+  }
+
+  .skill-pill {
+    font-size: 10px;
+    padding: 2px 6px;
+    gap: 4px;
+  }
+
+  /* --- Sheet 03: Case Logs --- */
   .case-log-item {
     grid-template-columns: 1fr;
     gap: 8px;
-    padding: 16px;
+    padding: 14px;
   }
 
   .case-date {
     border-right: none;
     border-bottom: 1px dashed var(--line-strong);
     padding-bottom: 6px;
+    padding-right: 0;
   }
 
-  .timeline-card {
-    padding: 16px;
+  .case-content h3 {
+    font-size: 1.1rem;
   }
 
-  .photo-modal-content {
-    grid-template-columns: 1fr;
-    padding: 16px;
-    gap: 16px;
-  }
-
-  .modal-photo-frame {
-    max-width: 220px;
-    margin: 0 auto;
+  .case-content p {
+    font-size: 0.9rem;
   }
 
   .star-row {
@@ -2085,48 +2344,301 @@ td.cert-date {
     gap: 2px;
   }
 
+  .star-label {
+    font-size: 10px;
+  }
+
+  .star-desc {
+    font-size: 0.88rem;
+  }
+
+  .case-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .case-action-btn {
+    justify-content: center;
+    font-size: 10px;
+    padding: 8px 12px;
+  }
+
+  .case-action-badge.offline {
+    justify-content: center;
+    font-size: 10px;
+    padding: 6px 10px;
+  }
+
+  /* --- Sheet 04: Timeline --- */
+  .timeline-card {
+    padding: 14px;
+  }
+
+  .timeline-meta {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .timeline-title {
+    font-size: 1.05rem;
+  }
+
+  .timeline-org {
+    font-size: 11px;
+  }
+
+  .timeline-card ul {
+    font-size: 0.88rem;
+    padding-left: 16px;
+  }
+
+  /* --- Sheet 05: Certification Table --- */
+  .clearance-table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 0 -4px;
+    padding: 0 4px;
+  }
+
+  table.clearance-table {
+    font-size: 0.82rem;
+    min-width: 460px;
+  }
+
+  table.clearance-table thead th {
+    padding: 8px 10px;
+    font-size: 9.5px;
+    white-space: nowrap;
+  }
+
+  table.clearance-table tbody td {
+    padding: 8px 10px;
+  }
+
+  td.cert-name {
+    min-width: 180px;
+  }
+
+  .cert-link {
+    font-size: 0.82rem;
+    gap: 4px;
+  }
+
+  td.cert-issuer {
+    font-size: 11px;
+    min-width: 130px;
+  }
+
+  td.cert-date {
+    font-size: 11px;
+  }
+
+  /* Drive Archive Card */
+  .cert-drive-archive-card {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 14px;
+    gap: 12px;
+  }
+
+  .cert-drive-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    max-width: 100%;
+  }
+
+  .cert-drive-info h4 {
+    font-size: 11px;
+  }
+
+  .cert-drive-info p {
+    font-size: 0.85rem;
+  }
+
+  .cert-drive-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 10px 14px;
+    font-size: 10.5px;
+  }
+
+  /* --- Sheet 06: Transmission & Contact --- */
   .transmission-layout-grid {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 16px;
+  }
+
+  .transmission-card {
+    padding: 16px;
+  }
+
+  .transmission-card-header {
+    font-size: 10.5px;
+    margin-bottom: 10px;
+  }
+
+  .transmission-card p.intro {
+    font-size: 0.88rem;
+    margin-bottom: 14px;
   }
 
   .transmission-line {
     grid-template-columns: 1fr;
-    gap: 4px;
+    gap: 2px;
+    padding: 8px 0;
+    font-size: 0.82rem;
   }
 
-  .dossier-tab-btn {
-    padding: 8px 12px;
+  .transmission-line .channel-name {
+    font-size: 10px;
+  }
+
+  .transmission-line a {
+    font-size: 12px;
+  }
+
+  /* Contact Form */
+  .contact-dispatch-panel {
+    padding: 16px;
+  }
+
+  .dispatch-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+  }
+
+  .dispatch-title {
+    font-size: 10.5px;
+  }
+
+  .form-input {
+    font-size: 11px;
+    padding: 8px 10px;
+  }
+
+  .dispatch-action-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .dispatch-submit-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 10px 16px;
     font-size: 11px;
   }
 
+  /* --- Sheet Turner Footer --- */
   .sheet-turner-bar {
     flex-direction: column;
     align-items: stretch;
-    gap: 10px;
+    gap: 8px;
+    margin-top: 24px;
+    padding-top: 16px;
   }
 
   .sheet-pagination-indicator {
     text-align: center;
     order: -1;
+    font-size: 10px;
   }
 
-  .desk-controls-inner {
-    padding: 0;
+  .turn-page-btn {
+    font-size: 11px;
+    padding: 8px 12px;
+    justify-content: center;
   }
 
-  .folder-top-tab {
-    left: 16px;
-    padding: 6px 16px;
-    font-size: 10.5px;
+  /* --- Photo Modal --- */
+  .photo-modal-content {
+    grid-template-columns: 1fr;
+    padding: 14px;
+    gap: 14px;
   }
 
-  .cover-stamp-box {
-    padding: 16px 12px 14px;
-    margin-bottom: 18px;
+  .modal-photo-frame {
+    max-width: 200px;
+    margin: 0 auto;
   }
 
-  .cover-file-dossier-info {
-    padding: 14px 16px;
+  .modal-metadata h4 {
+    font-size: 1.1rem;
+  }
+
+  .modal-meta-row {
+    grid-template-columns: 85px 1fr;
+    font-size: 11px;
+  }
+
+  .photo-modal-header {
+    padding: 8px 14px;
+    font-size: 11px;
   }
 }
+
+/* --- Extra Small Devices (< 420px, small Android phones) --- */
+@media (max-width: 420px) {
+
+  .cover-stamp-box h2 {
+    font-size: 20px;
+    letter-spacing: 2px;
+  }
+
+  .cover-stamp-box p {
+    font-size: 8.5px;
+  }
+
+  .classified-banner {
+    font-size: 8.5px;
+    padding: 5px 8px;
+    letter-spacing: 0.08em;
+  }
+
+  .desk-action-btn {
+    font-size: 9px;
+    padding: 3px 6px;
+  }
+
+  .dossier-tab-btn {
+    padding: 6px 8px;
+    font-size: 9px;
+  }
+
+  .paper-sheet {
+    padding: 14px 10px 20px;
+  }
+
+  .profile-main h1 {
+    font-size: 1.35rem;
+  }
+
+  .surveillance-row {
+    grid-template-columns: 95px 1fr;
+    font-size: 10px;
+  }
+
+  table.clearance-table {
+    font-size: 0.78rem;
+  }
+
+  .cert-drive-info h4 {
+    font-size: 10px;
+  }
+
+  .cert-drive-info p {
+    font-size: 0.8rem;
+  }
+
+  .transmission-card p.intro {
+    font-size: 0.82rem;
+  }
+
+  .timeline-title {
+    font-size: 0.95rem;
+  }
+}
+
