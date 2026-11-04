@@ -31,6 +31,9 @@ Di perangkat dengan mouse, terminal di monitor bisa diklik lalu diketik. Perinta
 
 Portofolio lama bertema dossier ada di folder `dossier/`. Tidak ada tautan ke sana dari situs, jadi pengunjung membukanya lewat perintah `dossier` di terminal. Halamannya ditandai `noindex` supaya tidak muncul di mesin pencari.
 
+## Saat mengubah CSS atau JS
+Ganti nilai `?v=` pada tautan `css/style.css` dan semua `js/*.js` di `index.html`, misalnya `?v=20261105a`. GitHub Pages mengizinkan browser menyimpan file selama 10 menit. Tanpa nomor baru, pengunjung bisa mendapat HTML baru dengan CSS lama, dan halaman tampil berantakan.
+
 ## Menjalankan di komputer
 ```bash
 python -m http.server 4173
