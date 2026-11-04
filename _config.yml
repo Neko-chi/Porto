@@ -1,0 +1,4 @@
+# Catatan desain untuk pengembang, tidak perlu ikut terbit di situs.
+exclude:
+  - PRODUCT.md
+  - DESIGN.md

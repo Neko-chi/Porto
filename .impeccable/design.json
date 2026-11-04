@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 2,
+  "generatedFrom": "DESIGN.md",
+  "colorMeta": {
+    "selection-blue": { "displayName": "Selection Blue", "role": "work in progress, current item" },
+    "ruler-vermilion": { "displayName": "Ruler Vermilion", "role": "guide line" },
+    "ornament-gold": { "displayName": "Ornament Gold", "role": "ornament" }
+  },
+  "extensions": {
+    "motion": { "ease": "cubic-bezier(0.16, 1, 0.3, 1)", "unitBudgetMs": 2400, "introMs": 900 },
+    "breakpoints": { "nav": 1080, "stack": 820, "phone": 560 },
+    "agentColors": ["#38d6f5", "#f5b83d", "#ff5a3c", "#ff7ab8", "#4be3a0", "#9c8cff", "#f3f5f6"]
+  },
+  "components": [
+    {
+      "name": "Primary button",
+      "html": "<a class=\"btn\" href=\"CV.pdf\">Unduh CV</a>",
+      "css": ".btn{display:inline-flex;align-items:center;min-height:52px;padding:0 26px;background:#f3f5f6;color:#0c0f12;font-weight:600;text-decoration:none}"
+    }
+  ],
+  "narrative": {
+    "northStar": "A construction drawing being worked on in front of the visitor.",
+    "rules": ["Content first, spectacle second", "Square corners", "Monospace only for data"]
+  }
+}

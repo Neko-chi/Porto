@@ -1,18 +1,40 @@
 # Portfolio — Renaissance Ricarda Sugiarto Putra
 
-Berkas portofolio personal dengan konsep visual interaktif **Classified Dossier / Lembar Berkas Rahasia**.
+Portofolio pribadi dengan tema gelap. Halaman dibuka dengan kotak RR. Saat kotak disorot, kursor agen keluar, dan saat diklik pengunjung masuk. Di dalam, dua kru kursor menunggu rapi di sekitar kursor utama: kru scale menarik bingkai ukuran setiap layer, lalu kru pengetik mengisi kata di dalamnya.
 
-## 📁 Ikhtisar Lembar Berkas
-- **Lembar 01 (Profil Subjek)**: Biodata resmi, riwayat fokus (Software Engineering, AI Agents & Cyber Security), dan tautan unduh CV Resmi (PDF).
-- **Lembar 02 (Keahlian & Doktrin)**: Klasifikasi keahlian teknis (Core Engineering, Cyber Security & OSINT, AI Systems & Automation, Infrastructure & Tools).
-- **Lembar 03 (Rekam Kasus)**: Dokumentasi proyek terpilih (A.R.O.N.A Neural Assistant, C2 Framework & Security Auditing, Modern Web Applications).
-- **Lembar 04 (Pengalaman Kerja & Pendidikan)**: Linimasa rekam jejak formal dan pengabdian institusi.
-- **Lembar 05 (Sertifikasi & Klirens)**: Bukti lisensi resmi & sertifikasi keahlian dengan tautan langsung ke Google Drive.
-- **Lembar 06 (Transmisi & Kontak)**: Saluran komunikasi langsung (Email, WhatsApp, LinkedIn, GitHub, Instagram).
+## Isi halaman
+- **Hero**: pernyataan singkat, unduh CV, dan empat fakta yang tertaut ke buktinya.
+- **Proyek**: A.R.O.N.A dan Juara 1 Web Technologies Competition.
+- **Keahlian**: Cyber Security & OSINT, Software & AI Engineering, Full-Stack Web, QA & Toolchain.
+- **Pengalaman**, **Sertifikat**, **Tentang**, dan **Kontak** dengan formulir.
 
-## 🛠️ Teknologi
-- **HTML5 & Vanilla CSS3**: Custom design system bertema dossier fisik (tekstur kertas manila, cap stempel, klip binder, efek polaroid, watermark).
-- **Modern JavaScript**: Navigasi tumpukan kertas interaktif (stacked paper sheets deck), modal inspeksi foto forensik, dan audio filter tactile desk.
+## Teknologi
+HTML, CSS, dan JavaScript murni tanpa library dan tanpa build step.
+
+| File | Fungsi |
+| --- | --- |
+| `js/build.js` | Mesin agen: layar RR, kursor, bangun dan hapus layer, keluar |
+| `js/device.js` | Monitor 3D dengan WebGL murni, layarnya boot sampai terminal |
+| `js/i18n.js` | Teks bahasa Inggris dan teks dinamis |
+| `js/main.js` | Bahasa, menu, dan formulir kontak |
+
+## Mengubah konten
+Teks bahasa Indonesia ada di `index.html`, terjemahan Inggrisnya ada di `js/i18n.js` dengan kunci `data-i18n` yang sama.
+
+Elemen yang ingin ikut dibangun agen diberi atribut `data-b` dengan nilai `text`, `box`, `line`, atau `pop`, di dalam elemen ber-`data-unit`. Satu `data-unit` adalah satu tema, dan kursor yang mengerjakannya memakai satu warna.
+
+## Formulir kontak
+Isi nilai `web3FormsKey` di `index.html` dengan access key dari Web3Forms. Selama masih `YOUR_ACCESS_KEY_HERE`, formulir membuka aplikasi email pengunjung.
+
+## Easter egg
+Di perangkat dengan mouse, terminal di monitor bisa diklik lalu diketik. Perintahnya ada di objek `COMMANDS` dalam `js/device.js`. Coba `help`.
+
+Portofolio lama bertema dossier ada di folder `dossier/`. Tidak ada tautan ke sana dari situs, jadi pengunjung membukanya lewat perintah `dossier` di terminal. Halamannya ditandai `noindex` supaya tidak muncul di mesin pencari.
+
+## Menjalankan di komputer
+```bash
+python -m http.server 4173
+```
 
 ---
 © 2026 Renaissance Ricarda Sugiarto Putra. All rights reserved.
