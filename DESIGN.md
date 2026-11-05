@@ -52,7 +52,7 @@ components:
 
 ## Overview
 
-The page behaves like a construction drawing being worked on. It opens on a single RR tile. Hovering releases cursors, clicking enters. A few coloured cursors then wait in fixed seats around the visitor's own pointer, and leave to frame and fill each layer. Layers that have been scrolled past shrink away on their own and rebuild on the way back. The hero object is a single monitor. Its screen boots through a Parrot-style menu and kernel log, reaches a login, signs in, and opens a terminal. The palette comes from the owner's photograph: black coat, red knit, gold ornament, cyan sky.
+The page behaves like a construction drawing being worked on. It opens on a single RR tile. Hovering releases cursors, clicking enters. Coloured cursors then wait in tidy rings around the visitor's own pointer, and leave to frame and type each layer. Layers that have been scrolled past shrink away on their own and rebuild on the way back. The hero object is a single monitor. Its screen boots through a Parrot-style menu and kernel log, reaches a login, signs in, and opens a terminal. The palette comes from the owner's photograph: black coat, red knit, gold ornament, cyan sky.
 
 ## Colors
 
@@ -80,13 +80,13 @@ Square corners everywhere. Square selection handles are the recurring shape.
 - **Button:** ink fill, ground text, blue offset ring on hover.
 - **Arrow link:** underlined text with a drawn icon, turns selection blue on hover.
 - **RR tile:** the only thing on the entry screen. It flies to the nav logo on entry and back on exit.
-- **Agent:** two crews. Scalers (six, three on phones) drag the blue size frame for each layer. Typists (ten, five on phones) then type or fill inside that frame and wear the theme's colour. Free cursors hold two tidy rings around the pointer and surround whatever the visitor is about to press.
+- **Agent:** two crews. Scalers (six, three on phones) drag the blue size frame for each layer. Typists (ten, five on phones) then type or fill inside that frame and wear the theme's colour. Free cursors hold two still, tidy rings that follow the pointer, and surround whatever the visitor is about to press. On touch screens free cursors stay hidden and appear only under a pressing finger.
 - **Build jobs:** `data-b` values `text`, `box`, `line`, and `pop` inside a `data-unit`.
 
 ## Do's and Don'ts
 
 - Do keep all content in the HTML. The engine only delays it.
-- Do keep idle cursors still in their seats, never orbiting or wandering.
+- Do keep idle cursors still in their rings, never orbiting or swimming.
 - Do keep building slow enough to watch, and never hide idle cursors.
 - Do skip the build entirely for reduced motion and data saver.
 - Don't put a label or eyebrow above a heading.

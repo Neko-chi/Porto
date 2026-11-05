@@ -3,8 +3,9 @@
  *
  * Alur:
  *   gate      hanya kotak RR. Kursor keluar lalu diam saat kotak disorot, masuk lagi saat ditinggalkan.
- *   live      dua kru menunggu rapi di sekitar kursor utama. Kru scale menarik bingkai ukuran
- *             setiap layer, lalu kru pengetik mengisi kata di dalam bingkai itu.
+ *   live      kursor yang bebas diam dalam dua lingkaran dan ikut bergeser bersama kursor utama.
+ *             Kru scale menarik bingkai ukuran setiap layer, lalu kru pengetik mengisi kata di
+ *             dalam bingkai itu. Di layar sentuh, kursor bebas hanya muncul saat jari menekan.
  *             Layer yang sudah terlewat menghilang sendiri, dan dibangun ulang saat kembali.
  *   exiting   semua layer dihapus, lalu kembali ke kotak RR.
  *
@@ -23,8 +24,11 @@
     return;
   }
 
-  // Tanpa desynchronized, kanvas selebar layar turun ke sekitar 5 fps di GPU terintegrasi.
-  var ctx = canvas.getContext('2d', { desynchronized: true });
+  var coarse = matchMedia('(hover: none)').matches;
+
+  // Di laptop, desynchronized menjaga kanvas selebar layar tetap lancar di GPU terintegrasi.
+  // Di HP tidak dipakai, karena kanvas ini bisa tampil sebagai lapisan yang menutupi halaman.
+  var ctx = coarse ? canvas.getContext('2d') : canvas.getContext('2d', { desynchronized: true });
   var gate = document.getElementById('gate');
   var tile = document.getElementById('gateTile');
   var brandMark = document.querySelector('.brand-mark');
@@ -33,7 +37,6 @@
   var shells = document.querySelectorAll('.nav, main, .footer');
 
   var small = window.innerWidth < 760;
-  var coarse = matchMedia('(hover: none)').matches;
 
   var TYPISTS = small ? 5 : 10;    // kru pengetik, mengisi bagian dalam bingkai
   var SCALERS = small ? 3 : 6;     // kru scale, menarik bingkai ukuran setiap layer
@@ -73,6 +76,8 @@
   var pointer = { x: 0, y: 0 };
   var gateOpen = false;
   var hoverEl = null;
+  var touching = false;
+  var ticks = 0;
   var pressAt = -1000;
   var frameNow = 0;
   var dirty = true;
@@ -127,8 +132,46 @@
 
   function stageChanged(job, built) {
     if (job.el.id !== 'stage' || !window.RRDevice) return;
-    if (built) window.RRDevice.assemble(2600);
-    else window.RRDevice.disassemble(700);
+    // Monitor hanya hiasan: kalau bermasalah, pembangunan halaman harus tetap jalan.
+    try {
+      if (built) window.RRDevice.assemble(2600);
+      else window.RRDevice.disassemble(700);
+    } catch (err) {
+      root.classList.add('no-webgl');
+    }
+  }
+
+  function toTop() {
+    var before = root.style.scrollBehavior;
+    root.style.scrollBehavior = 'auto';
+    window.scrollTo(0, 0);
+    root.style.scrollBehavior = before;
+  }
+
+  // Pengaman: apa pun yang gagal, pengunjung tetap mendapat halaman lengkap tanpa animasi.
+  function rescue() {
+    if (phase === 'off') return;
+    phase = 'off';
+    active = [];
+    ready = [];
+    units.forEach(function (unit) {
+      unit.queue = [];
+      unit.jobs.forEach(function (job) {
+        try { joinText(job); } catch (err) { job.parts = null; }
+        job.state = 'built';
+        job.queued = false;
+        mark(job, 'done');
+      });
+    });
+    root.classList.remove('js-build', 'is-gated');
+    gate.hidden = true;
+    canvas.hidden = true;
+    setInert(false);
+    try {
+      if (window.RRDevice) window.RRDevice.complete();
+    } catch (err) {
+      root.classList.add('no-webgl');
+    }
   }
 
   // -------------------------------------------------------------- Pengumpulan
@@ -613,13 +656,20 @@
         } else {
           seat(a, pointer.x, pointer.y, 1);
         }
+        if (coarse && !touching) wantAlpha = 0;
       }
 
       a.alpha += (wantAlpha - a.alpha) * (1 - Math.exp(-dt / 90));
 
+      // Kursor yang tersembunyi di HP langsung muncul di bawah jari, bukan terbang dari jauh.
+      if (coarse && !a.job && a.alpha < 0.05) {
+        a.x = a.tx;
+        a.y = a.ty;
+        a.trail = [];
+      }
+
       // Semua kursor bebas memakai kelambatan yang sama supaya formasinya tidak rusak saat bergerak.
-      var tau = a.job ? 90 : 100;
-      var k = 1 - Math.exp(-dt / tau);
+      var k = 1 - Math.exp(-dt / (a.job ? 90 : 100));
       var nx = a.x + (a.tx - a.x) * k;
       var ny = a.y + (a.ty - a.y) * k;
       a.vx = nx - a.x;
@@ -858,19 +908,33 @@
 
   // -------------------------------------------------------------------- Loop
   function needsFrame(now) {
+    if (phase === 'off') return false;
+    if (touching) return true;
     if (active.length || guideAlpha > 0.01) return true;
     if (ready.length || units.some(function (u) { return u.queue.length; })) return true;
     if (phase === 'entering' || phase === 'exiting') return true;
     if (now - pressAt < PRESS_MS + 40) return true;
     // Semua kursor sudah diam di tempatnya: tidak perlu menggambar lagi sampai ada gerakan.
     return agents.some(function (a) {
-      var target = phase === 'gate' && !gateOpen ? 0 : 1;
+      var hidden = (phase === 'gate' && !gateOpen) || (coarse && phase === 'live' && !a.job);
+      var target = hidden ? 0 : 1;
       return Math.abs(a.x - a.tx) + Math.abs(a.y - a.ty) > 0.4 || Math.abs(a.alpha - target) > 0.02;
     });
   }
 
   function tick(now) {
     raf = 0;
+    ticks++;
+    try {
+      step(now);
+    } catch (err) {
+      rescue();
+      return;
+    }
+    if (needsFrame(now)) raf = requestAnimationFrame(tick);
+  }
+
+  function step(now) {
     var dt = clamp(now - last, 1, 48);
     last = now;
 
@@ -896,14 +960,12 @@
     var wantGuides = active.length > 0 ? 1 : 0;
     guideAlpha += (wantGuides - guideAlpha) * (1 - Math.exp(-dt / 170));
 
+    // Saat loop berhenti, gambar terakhir tetap di kanvas supaya tugas yang selesai tidak berkedip.
     draw(now);
-
-    // Saat loop berhenti, gambar terakhir tetap di kanvas supaya kursor yang diam tidak hilang.
-    if (needsFrame(now)) raf = requestAnimationFrame(tick);
   }
 
   function wake() {
-    if (!raf) {
+    if (phase !== 'off' && !raf) {
       last = performance.now();
       raf = requestAnimationFrame(tick);
     }
@@ -926,14 +988,14 @@
   function enter() {
     if (phase !== 'gate') return;
     root.classList.remove('is-gated');
-    window.scrollTo({ top: 0, behavior: 'instant' });
+    toTop();
     setInert(false);
     gateOpen = false;
     tile.style.transform = tileOffset();
     gate.classList.add('is-leaving');
     setPhase('entering');
     lastWork = phaseAt;
-    agents.forEach(function (a) { a.alpha = Math.max(a.alpha, 0.6); });
+    if (!coarse) agents.forEach(function (a) { a.alpha = Math.max(a.alpha, 0.6); });
 
     window.setTimeout(function () {
       gate.hidden = true;
@@ -941,9 +1003,15 @@
       if (brand.state === 'empty') settle(brand, true);
     }, ENTER_MS);
 
+    // Kalau animasi tidak berjalan sama sekali, tampilkan halaman apa adanya.
+    ticks = 0;
+    window.setTimeout(function () {
+      if (phase !== 'off' && !document.hidden && ticks < 8) rescue();
+    }, 3000);
+
     if (location.hash.length > 1) {
       var target = document.querySelector(location.hash);
-      if (target) target.scrollIntoView({ behavior: 'instant' });
+      if (target) target.scrollIntoView();
     }
     dirty = true;
     wake();
@@ -971,7 +1039,7 @@
 
     // Alamat seperti #kontak dibuang supaya masuk berikutnya selalu mulai dari beranda.
     if (location.hash) history.replaceState(null, '', location.pathname + location.search);
-    window.scrollTo({ top: 0, behavior: 'instant' });
+    toTop();
     root.classList.add('is-gated');
     setInert(true);
     if (window.RRDevice) window.RRDevice.reset();
@@ -1027,9 +1095,16 @@
       if (tile.matches(':focus-visible')) openGate(true);
     });
     tile.addEventListener('blur', function () { openGate(false); });
-    tile.addEventListener('click', enter);
+    tile.addEventListener('click', function () {
+      try {
+        enter();
+      } catch (err) {
+        rescue();
+      }
+    });
 
     brandLink.addEventListener('click', function (e) {
+      if (phase === 'off') return;
       e.preventDefault();
       exit();
     });
@@ -1048,7 +1123,24 @@
       wake();
     }, { passive: true });
 
+    function followTouch(e) {
+      touching = e.touches.length > 0;
+      if (touching) {
+        pointer.x = e.touches[0].clientX;
+        pointer.y = e.touches[0].clientY;
+      }
+      wake();
+    }
+
+    if (coarse) {
+      window.addEventListener('touchstart', followTouch, { passive: true });
+      window.addEventListener('touchmove', followTouch, { passive: true });
+      window.addEventListener('touchend', followTouch, { passive: true });
+      window.addEventListener('touchcancel', followTouch, { passive: true });
+    }
+
     document.addEventListener('pointerover', function (e) {
+      if (coarse) return;
       var el = e.target.closest ? e.target.closest(INTERACTIVE) : null;
       if (el === hoverEl) return;
       hoverEl = el;
