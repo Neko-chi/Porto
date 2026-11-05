@@ -330,7 +330,7 @@
   var WRAP = 50;
   var INPUT_MAX = 44;
   var canType = matchMedia('(pointer: fine)').matches;
-  var term = { active: false, input: '', rows: [], past: [], back: 0, effect: '', effectEnd: 0 };
+  var term = { active: false, input: '', rows: [], past: [], back: 0, effect: '', effectEnd: 0, output: '' };
 
   function resetTerm() {
     term.active = false;
@@ -339,13 +339,43 @@
     term.past = [];
     term.back = 0;
     term.effect = '';
+    term.output = '';
   }
 
   function print(text, kind) {
+    // Teks di monitor adalah gambar, jadi hasil perintah disimpan untuk perintah copy.
+    if (kind !== 'h') term.output += (term.output ? '\n' : '') + text;
     text.split('\n').forEach(function (line) {
       if (!line) term.rows.push(['', 'o']);
       for (var i = 0; i < line.length; i += WRAP) term.rows.push([line.slice(i, i + WRAP), kind || 'o']);
     });
+  }
+
+  function copyText(text) {
+    function fallback() {
+      var area = document.createElement('textarea');
+      area.value = text;
+      area.style.position = 'fixed';
+      area.style.opacity = '0';
+      document.body.appendChild(area);
+      area.select();
+      var done = false;
+      try { done = document.execCommand('copy'); } catch (err) { done = false; }
+      area.remove();
+      return done;
+    }
+
+    function report(done) {
+      print(done ? 'copied to clipboard.' : 'copy failed. your browser blocked it.', done ? 'c' : 'e');
+      term.output = text;
+      refresh();
+    }
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () { report(true); }, function () { report(fallback()); });
+    } else {
+      report(fallback());
+    }
   }
 
   function go(id) {
@@ -363,7 +393,11 @@
   // CTF mini: hanya hash yang disimpan di sini, jadi jawabannya tidak bisa dibaca dari kode.
   var CTF_HASH = 'edd5ea7a794347d1cf9fb6521006ab59403d694744331c4358a293215e6749f4';
   var ctfSolved = false;
-  try { ctfSolved = localStorage.getItem('rr-ctf') === '1'; } catch (e) {}
+  // Status hanya bertahan selama tab terbuka, supaya kunjungan baru mulai terkunci lagi.
+  try {
+    ctfSolved = sessionStorage.getItem('rr-ctf') === '1';
+    localStorage.removeItem('rr-ctf');
+  } catch (e) {}
 
   function sha256(text) {
     return window.crypto.subtle.digest('SHA-256', new TextEncoder().encode(text)).then(function (buffer) {
@@ -375,7 +409,7 @@
 
   var COMMANDS = {
     help: function () {
-      print('whoami  about  skills  projects  contact\nls  cat  neofetch  date  echo  clear\nmatrix  hire  cv  dossier  ctf  reboot  exit');
+      print('whoami  about  skills  projects  contact\nls  cat  neofetch  date  echo  clear  download\nmatrix  hire  cv  dossier  ctf  copy  reboot  exit');
     },
     whoami: function () { print('renaissance ricarda'); },
     about: function () { print('software engineer from indramayu, indonesia.\nbuilds web apps and AI systems, then tests them.'); },
@@ -391,7 +425,7 @@
       else if (args === 'secrets.txt') print('permission denied. earn access first: type ctf', 'e');
       else if (args === HIDDEN_FILE && ctfSolved) {
         print(HIDDEN_DATA);
-        print('# encoded. a base64 tool might help.', 'h');
+        print('# encoded. a base64 tool might help. copy works.', 'h');
       }
       else if (args === 'cv.pdf') print('binary file. try: cv');
       else print('cat: ' + (args || 'missing file') + ': no such file', 'e');
@@ -429,10 +463,16 @@
       else if (match[2] !== HIDDEN_FILE || !ctfSolved) print('base64: ' + match[2] + ': no such file', 'e');
       else {
         print(window.atob(HIDDEN_DATA));
-        print('# nice find. please keep the demo tidy.', 'h');
+        print('# nice find. copy or download it. keep it tidy.', 'h');
       }
     },
-    ctf: function () {
+    ctf: function (args) {
+      if (args === 'reset') {
+        ctfSolved = false;
+        try { sessionStorage.removeItem('rr-ctf'); } catch (e) {}
+        print('ctf reset. the reward is locked again.', 'c');
+        return;
+      }
       if (ctfSolved) {
         print('solved. your reward is waiting: ls -a', 'c');
         return;
@@ -455,7 +495,7 @@
           print('wrong flag. keep digging.', 'e');
         } else {
           ctfSolved = true;
-          try { localStorage.setItem('rr-ctf', '1'); } catch (e) {}
+          try { sessionStorage.setItem('rr-ctf', '1'); } catch (e) {}
           print('flag accepted.', 'c');
           print('you read the source, the robots file, and an old\narchive. that is how i work too.');
           print('reward: demo accounts unlocked. try: ls -a', 'c');
@@ -463,6 +503,30 @@
         }
         refresh();
       });
+    },
+    download: function (args) {
+      if (!args) {
+        print('usage: download <file>', 'e');
+        return;
+      }
+      if (args !== HIDDEN_FILE || !ctfSolved) {
+        print('download: ' + args + ': no such file', 'e');
+        return;
+      }
+      var url = URL.createObjectURL(new Blob([window.atob(HIDDEN_DATA) + '\n'], { type: 'text/plain' }));
+      var link = document.createElement('a');
+      link.href = url;
+      link.download = 'demo-accounts.txt';
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      window.setTimeout(function () { URL.revokeObjectURL(url); }, 2000);
+      print('saved: demo-accounts.txt', 'c');
+    },
+    wget: function (args) { COMMANDS.download(args); },
+    copy: function () {
+      if (term.output) copyText(term.output);
+      else print('copy: nothing to copy yet', 'e');
     },
     reboot: function () { reboot(); },
     exit: function () {
@@ -478,6 +542,10 @@
 
     term.past.push(text);
     term.back = term.past.length;
+
+    // Perintah copy memakai hasil perintah sebelumnya, jadi hasil itu tidak dihapus.
+    var keep = term.output;
+    if (text.toLowerCase() !== 'copy') term.output = '';
 
     if (/^(sudo\s+)?rm\s+-rf?\s+\/?\*?$/.test(text)) {
       term.effect = 'panic';
@@ -497,6 +565,7 @@
     var name = (space < 0 ? text : text.slice(0, space)).toLowerCase();
     var args = space < 0 ? '' : text.slice(space + 1).trim();
 
+    if (name === 'copy') term.output = keep;
     if (Object.prototype.hasOwnProperty.call(COMMANDS, name)) COMMANDS[name](args);
     else print('bash: ' + name + ': command not found. try: help', 'e');
   }
@@ -1005,6 +1074,14 @@
       var want = terminalReady() && !e.target.closest('a, button') && overScreen(e.clientX, e.clientY);
       if (want === term.active) return;
       term.active = want;
+      refresh();
+    });
+
+    document.addEventListener('paste', function (e) {
+      if (!term.active) return;
+      var text = (e.clipboardData && e.clipboardData.getData('text')) || '';
+      term.input = (term.input + text.replace(/\s+/g, ' ').trim()).slice(0, INPUT_MAX);
+      e.preventDefault();
       refresh();
     });
 
