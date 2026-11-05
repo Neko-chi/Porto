@@ -6,7 +6,7 @@
  *   live      kursor yang bebas diam dalam dua lingkaran dan ikut bergeser bersama kursor utama.
  *             Kru scale menarik bingkai ukuran setiap layer, lalu kru pengetik mengisi kata di
  *             dalam bingkai itu. Di layar sentuh, kursor bebas hanya muncul saat jari menekan.
- *             Layer yang sudah terlewat menghilang sendiri, dan dibangun ulang saat kembali.
+ *             Layer yang sudah jadi tetap ada. Layer yang terlewat sebelum selesai dibuat saat kembali.
  *   exiting   semua layer dihapus, lalu kembali ke kotak RR.
  *
  * Konten selalu ada di HTML. Elemen yang belum dibangun hanya transparan.
@@ -38,8 +38,8 @@
 
   var small = window.innerWidth < 760;
 
-  var TYPISTS = small ? 5 : 10;    // kru pengetik, mengisi bagian dalam bingkai
-  var SCALERS = small ? 3 : 6;     // kru scale, menarik bingkai ukuran setiap layer
+  var TYPISTS = small ? 6 : 12;    // kru pengetik, mengisi bagian dalam bingkai
+  var SCALERS = small ? 4 : 8;     // kru scale, menarik bingkai ukuran setiap layer
   var AGENTS = TYPISTS + SCALERS;
   var HELPERS = small ? 4 : 8;     // jumlah kursor yang ikut menunjuk elemen yang disorot
   var TRAIL = 3;
@@ -62,7 +62,6 @@
   var ARROW = new Path2D('M0 0 L0 14.5 L3.9 10.9 L6.4 16.4 L8.8 15.3 L6.3 9.9 L11.3 9.7 Z');
   var SCALE_MS = { text: 820, box: 1250, line: 1100, pop: 640 };
   var FILL_MS = { box: 950, pop: 560 };
-  var VANISH_MS = 420;
 
   var W = 0;
   var H = 0;
@@ -376,7 +375,6 @@
       splitText(job);
       job.dur = clamp(job.chars * 22, 750, 2700) / speedOf();
       mark(job, 'run');
-      job.agent.mode = 'ibeam';
       setTag(job, 'text');
     } else {
       job.dur = FILL_MS[job.kind] / speedOf();
@@ -408,7 +406,6 @@
       typeTo(job, job.chars);
       job.dur = clamp(job.chars * 8, 240, 900) / speedOf();
       mark(job, 'run');
-      job.agent.mode = 'ibeam';
     } else {
       mark(job, 'out');
       stageChanged(job, false);
@@ -429,21 +426,12 @@
 
     // Sudah di luar layar: tidak ada yang melihat, langsung selesaikan.
     if (r.bottom < -60 || r.top > H + 60) {
-      settle(job, false);
+      // Yang sudah selesai tetap ada. Yang belum selesai dikosongkan, lalu dibuat saat kembali.
+      settle(job, job.state === 'fade');
       return;
     }
 
     if (job.state === 'ready') return;
-
-    if (job.state === 'vanish') {
-      job.p = 1 - easeOut(clamp((now - job.t0) / job.dur, 0, 1));
-      if (now - job.t0 >= job.dur) {
-        mark(job, 'wait');
-        job.state = 'empty';
-        active.splice(active.indexOf(job), 1);
-      }
-      return;
-    }
 
     if (job.state === 'fade') {
       if (now - job.t0 >= job.dur) {
@@ -500,20 +488,8 @@
     }
   }
 
-  // Layer yang sudah terlewat menghilang sendiri tanpa kursor: bingkainya mengecil lalu hilang.
-  function vanish(job, now) {
-    job.state = 'vanish';
-    job.t0 = now;
-    job.dur = VANISH_MS;
-    job.p = 1;
-    mark(job, 'out');
-    stageChanged(job, false);
-    active.push(job);
-  }
-
-  // Layer dibangun saat masuk layar dan menghilang saat sudah terlewat.
-  function evaluate(now) {
-    var clearTop = H * 0.14;
+  // Layer dibangun saat ada di layar. Yang sudah jadi tetap ada, yang terlewat dibuat saat kembali.
+  function evaluate() {
     // Di ujung halaman tidak ada lagi yang bisa di-scroll, jadi seluruh layar harus dibangun.
     var atEnd = window.scrollY + H >= document.documentElement.scrollHeight - 8;
     var buildBottom = atEnd ? H + 1 : H * 0.93;
@@ -527,16 +503,9 @@
           return;
         }
 
-        if (job.state !== 'empty' && job.state !== 'built') return;
+        if (job.state !== 'empty') return;
 
-        var margin = job.state === 'empty' ? 48 : 0;   // mencegah kedip di batas
-        var want = unit.sticky || (r.bottom > clearTop + margin && r.top < buildBottom);
-
-        if (job.state === 'built') {
-          if (want) return;
-          if (r.bottom > 0 && r.top < H) vanish(job, now);
-          else settle(job, false);
-        } else if (want) {
+        if (unit.sticky || (r.bottom > 0 && r.top < buildBottom)) {
           enqueue(job, 'build');
         } else if (job.queued) {
           dequeue(job);
@@ -551,7 +520,7 @@
         if (job.state === 'clear' || (job.state === 'fly' && job.next === 'clear')) return;
 
         // Layer yang sedang dikerjakan langsung dibatalkan.
-        if (job.state === 'fly' || job.state === 'scale' || job.state === 'ready' || job.state === 'work' || job.state === 'vanish') {
+        if (job.state === 'fly' || job.state === 'scale' || job.state === 'ready' || job.state === 'work') {
           settle(job, false);
           return;
         }
@@ -723,13 +692,7 @@
     if (a.alpha < 0.02 || a.x < -40 || a.y < -40 || a.x > W + 40 || a.y > H + 40) return;
     var color = a.tint || a.color;
 
-    if (a.mode === 'ibeam') {
-      ctx.globalAlpha = a.alpha;
-      ctx.fillStyle = color;
-      ctx.fillRect(a.x + 5, a.y - 9, 2, 18);
-      ctx.fillRect(a.x + 2, a.y - 10, 8, 2);
-      ctx.fillRect(a.x + 2, a.y + 8, 8, 2);
-    } else if (a.mode === 'cross') {
+    if (a.mode === 'cross') {
       ctx.globalAlpha = a.alpha;
       ctx.fillStyle = color;
       ctx.fillRect(a.x - 7, a.y - 1, 14, 2);
@@ -816,11 +779,7 @@
       return;
     }
 
-    if (job.state === 'vanish') {
-      ctx.fillStyle = grey + 0.16 * job.p + ')';
-      ctx.fillRect(r.left, r.top, r.width * job.p, r.height * job.p);
-      frame(r.left, r.top, r.width * job.p, r.height * job.p, job.p);
-    } else if (job.state === 'clear') {
+    if (job.state === 'clear') {
       if (job.kind !== 'text') {
         var c = easeOut(job.p);
         ctx.fillStyle = grey + '0.16)';
@@ -943,7 +902,7 @@
     if (phase === 'live' && (dirty || now - checkedAt > 240)) {
       dirty = false;
       checkedAt = now;
-      evaluate(now);
+      evaluate();
     }
 
     if (phase === 'exiting') {
@@ -1084,7 +1043,7 @@
     window.RRBuild = {
       // Dipakai sebelum ganti bahasa: tugas yang sedang berjalan diselesaikan seketika.
       finish: function () {
-        active.slice().forEach(function (job) { settle(job, job.next !== 'clear' && job.state !== 'vanish'); });
+        active.slice().forEach(function (job) { settle(job, job.next !== 'clear'); });
         dirty = true;
       }
     };
