@@ -4,7 +4,7 @@ Portofolio pribadi dengan tema gelap. Halaman dibuka dengan kotak RR. Saat kotak
 
 ## Isi halaman
 - **Hero**: pernyataan singkat, unduh CV, dan empat fakta yang tertaut ke buktinya.
-- **Proyek**: A.R.O.N.A dan Juara 1 Web Technologies Competition.
+- **Proyek**: Inventaris Gudang Sekolah, A.R.O.N.A, dan Juara 1 Web Technologies Competition.
 - **Keahlian**: Cyber Security & OSINT, Software & AI Engineering, Full-Stack Web, QA & Toolchain.
 - **Pengalaman**, **Sertifikat**, **Tentang**, dan **Kontak** dengan formulir.
 

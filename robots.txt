@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://renaissancericarda.my.id/sitemap.xml
+
+# ctf fragment 2 of 3 (base64): bDRsdQ==
+# next clue: the old archive keeps a note in its head. the terminal knows the way.

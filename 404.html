@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#0C0F12">
+  <title>404 — Renaissance Ricarda</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <style>
+    :root {
+      color-scheme: dark;
+      --ground: #0c0f12;
+      --panel: #13171b;
+      --line: #3a424b;
+      --fg: #f3f5f6;
+      --fg-2: #aab3bb;
+      --green: #4be3a0;
+      --red: #ff8a73;
+      --prompt: #ff4a2e;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      display: grid;
+      place-items: center;
+      min-height: 100svh;
+      margin: 0;
+      padding: 16px;
+      background: var(--ground);
+      color: var(--fg);
+      font: 500 15px/1.75 ui-monospace, "SFMono-Regular", Consolas, monospace;
+    }
+
+    main {
+      width: min(640px, 100%);
+      background: var(--panel);
+      border: 1px solid var(--line);
+    }
+
+    .bar {
+      padding: 8px 16px;
+      border-bottom: 1px solid var(--line);
+      color: var(--fg-2);
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .screen {
+      padding: 20px;
+      overflow-wrap: anywhere;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    .prompt {
+      color: var(--prompt);
+    }
+
+    .cmd {
+      color: var(--green);
+    }
+
+    .err {
+      margin-block: 2px 16px;
+      color: var(--red);
+    }
+
+    .note {
+      margin-top: 16px;
+      color: var(--fg-2);
+    }
+
+    a {
+      color: var(--fg);
+      text-underline-offset: 3px;
+    }
+
+    a:hover {
+      color: var(--green);
+    }
+
+    a:focus-visible {
+      outline: 2px solid #2e8bff;
+      outline-offset: 3px;
+    }
+
+    .caret {
+      display: inline-block;
+      width: 9px;
+      height: 1.1em;
+      margin-left: 2px;
+      background: var(--fg);
+      vertical-align: text-bottom;
+      animation: blink 1s steps(2) infinite;
+    }
+
+    @keyframes blink {
+      50% {
+        opacity: 0;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .caret {
+        animation: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <div class="bar">ricarda@parrot: ~</div>
+    <div class="screen">
+      <p class="prompt">┌─[ricarda@parrot]─[~]</p>
+      <p class="cmd">└──╼ $cd <span id="path">/halaman</span></p>
+      <p class="err">bash: cd: no such file or directory</p>
+
+      <p class="prompt">┌─[ricarda@parrot]─[~]</p>
+      <p class="cmd">└──╼ $cat 404.txt</p>
+      <p id="message">Halaman ini tidak ada. Mungkin alamatnya salah ketik, atau sudah dipindahkan.</p>
+
+      <p class="note"><a href="/" id="home">cd ~ (kembali ke beranda)</a></p>
+
+      <p class="note prompt">┌─[ricarda@parrot]─[~]</p>
+      <p class="cmd">└──╼ $<span class="caret" aria-hidden="true"></span></p>
+    </div>
+  </main>
+
+  <script>
+    (function () {
+      document.getElementById('path').textContent = location.pathname;
+      var saved = '';
+      try { saved = localStorage.getItem('rr-lang') || ''; } catch (e) {}
+      var browser = (navigator.language || 'id').toLowerCase();
+      if ((saved || browser.slice(0, 2)) === 'id') return;
+      document.documentElement.lang = 'en';
+      document.getElementById('message').textContent = 'This page does not exist. The address may be mistyped, or it has moved.';
+      document.getElementById('home').textContent = 'cd ~ (back to home)';
+    })();
+  </script>
+</body>
+
+</html>

@@ -355,19 +355,44 @@
     }, 600);
   }
 
+  // Akun demo proyek Inventaris, disandikan sebagai bagian dari easter egg.
+  // Ini bukan pengamanan: siapa pun yang melihat kode sumber tetap bisa membacanya.
+  var HIDDEN_FILE = '.demo-accounts';
+  var HIDDEN_DATA = 'aW52ZW50YXJpcyBndWRhbmcgc2Vrb2xhaCwgZGVtbyBhY2NvdW50cwpyb2xlICAgICAgdXNlcm5hbWUgICBwYXNzd29yZAptYW5hZ2VyICAgbWFuYWdlciAgICBNZXRhbW9ycGhvc2lzCm9wZXJhdG9yICBvcGVyYXRvciAgIEJhZEFwcGxl';
+
+  // CTF mini: hanya hash yang disimpan di sini, jadi jawabannya tidak bisa dibaca dari kode.
+  var CTF_HASH = 'edd5ea7a794347d1cf9fb6521006ab59403d694744331c4358a293215e6749f4';
+  var ctfSolved = false;
+  try { ctfSolved = localStorage.getItem('rr-ctf') === '1'; } catch (e) {}
+
+  function sha256(text) {
+    return window.crypto.subtle.digest('SHA-256', new TextEncoder().encode(text)).then(function (buffer) {
+      return Array.prototype.map.call(new Uint8Array(buffer), function (byte) {
+        return ('0' + byte.toString(16)).slice(-2);
+      }).join('');
+    });
+  }
+
   var COMMANDS = {
     help: function () {
-      print('whoami  about  skills  projects  contact\nls  cat  neofetch  date  echo  clear\nmatrix  hire  cv  dossier  reboot  exit');
+      print('whoami  about  skills  projects  contact\nls  cat  neofetch  date  echo  clear\nmatrix  hire  cv  dossier  ctf  reboot  exit');
     },
     whoami: function () { print('renaissance ricarda'); },
     about: function () { print('software engineer from indramayu, indonesia.\nbuilds web apps and AI systems, then tests them.'); },
     skills: function () { print('full-stack · AI · cyber security'); },
-    projects: function () { print('A.R.O.N.A    neural assistant, python\njuara 1      web technologies, indramayu'); },
+    projects: function () { print('inventaris   laravel 12, live demo\nA.R.O.N.A    neural assistant, python\njuara 1      web technologies, indramayu'); },
     contact: function () { print('renaissancericharda@gmail.com\ngithub.com/Noolep'); },
-    ls: function () { print('focus.txt  projects/  dossier/  cv.pdf  secrets.txt'); },
+    ls: function (args) {
+      var all = /^-[a-z]*a/.test(args) && ctfSolved;
+      print((all ? '.  ..  ' + HIDDEN_FILE + '\n' : '') + 'focus.txt projects/ dossier/ cv.pdf secrets.txt');
+    },
     cat: function (args) {
       if (args === 'focus.txt') print('full-stack · AI · cyber security');
-      else if (args === 'secrets.txt') print('permission denied. good instinct though.', 'e');
+      else if (args === 'secrets.txt') print('permission denied. earn access first: type ctf', 'e');
+      else if (args === HIDDEN_FILE && ctfSolved) {
+        print(HIDDEN_DATA);
+        print('# encoded. a base64 tool might help.', 'h');
+      }
       else if (args === 'cv.pdf') print('binary file. try: cv');
       else print('cat: ' + (args || 'missing file') + ': no such file', 'e');
     },
@@ -398,6 +423,47 @@
       if (args.replace(/\/$/, '') === 'dossier') COMMANDS.dossier();
       else print('cd: ' + (args || 'missing folder') + ': permission denied', 'e');
     },
+    base64: function (args) {
+      var match = /^(-d|--decode)\s+(\S+)$/.exec(args);
+      if (!match) print('usage: base64 -d <file>', 'e');
+      else if (match[2] !== HIDDEN_FILE || !ctfSolved) print('base64: ' + match[2] + ': no such file', 'e');
+      else {
+        print(window.atob(HIDDEN_DATA));
+        print('# nice find. please keep the demo tidy.', 'h');
+      }
+    },
+    ctf: function () {
+      if (ctfSolved) {
+        print('solved. your reward is waiting: ls -a', 'c');
+        return;
+      }
+      print('3 fragments are hidden around this site.\njoin them: rr{one_two_three}\nsubmit with: submit rr{...}\nfirst clue: read the source of this page.\nreward: demo accounts for the inventory app.');
+    },
+    submit: function (args) {
+      var guess = args.trim();
+      if (!guess) {
+        print('usage: submit rr{...}', 'e');
+        return;
+      }
+      if (!window.crypto || !window.crypto.subtle) {
+        print('submit: needs https', 'e');
+        return;
+      }
+      print('checking...', 'h');
+      sha256(guess).then(function (hash) {
+        if (hash !== CTF_HASH) {
+          print('wrong flag. keep digging.', 'e');
+        } else {
+          ctfSolved = true;
+          try { localStorage.setItem('rr-ctf', '1'); } catch (e) {}
+          print('flag accepted.', 'c');
+          print('you read the source, the robots file, and an old\narchive. that is how i work too.');
+          print('reward: demo accounts unlocked. try: ls -a', 'c');
+          print('mention this flag when you contact me: type hire');
+        }
+        refresh();
+      });
+    },
     reboot: function () { reboot(); },
     exit: function () {
       print('bye.');
@@ -422,6 +488,10 @@
       print('nice try. this incident will be reported to ricarda.', 'e');
       return;
     }
+
+    // Bentuk pipa yang biasa dipakai di terminal asli.
+    var piped = /^cat\s+(\S+)\s*\|\s*base64\s+(-d|--decode)$/.exec(text);
+    if (piped) text = 'base64 -d ' + piped[1];
 
     var space = text.indexOf(' ');
     var name = (space < 0 ? text : text.slice(0, space)).toLowerCase();

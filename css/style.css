@@ -533,7 +533,7 @@ h2 {
   line-height: 1.02;
 }
 
-.case-flip h3 {
+.case-long h3 {
   font-size: clamp(2.25rem, 4.6vw, 4.25rem);
 }
 
@@ -649,6 +649,23 @@ h2 {
 .pipe-core {
   border-color: var(--sel);
   background: #0e1a29;
+}
+
+.pipe-track-plain::before,
+.pipe-track-plain::after {
+  display: none;
+}
+
+.case-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 28px;
+}
+
+.case-note {
+  margin-top: 6px;
+  color: var(--fg-3);
+  font-size: 0.875rem;
 }
 
 .pipe figcaption {

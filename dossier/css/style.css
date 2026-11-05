@@ -2642,3 +2642,33 @@ td.cert-date {
   }
 }
 
+/* Jalan kembali ke portofolio baru */
+.back-to-new {
+  position: fixed;
+  left: 12px;
+  bottom: max(12px, env(safe-area-inset-bottom));
+  z-index: 10001;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 16px;
+  background: var(--ink);
+  border: 1px solid var(--paper);
+  color: var(--paper);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+  transition: background-color 0.15s ease;
+}
+
+.back-to-new:hover {
+  background: var(--stamp);
+}
+
+.back-to-new:focus-visible {
+  outline: 2px solid var(--stamp);
+  outline-offset: 2px;
+}

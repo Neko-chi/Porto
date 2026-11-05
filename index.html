@@ -2,6 +2,7 @@
 <html lang="id">
 
 <head>
+  <!-- ctf fragment 1 of 3: b4ngun | next clue: where do robots read the rules? -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Renaissance Ricarda — Software Engineer &amp; Security Tester</title>
@@ -16,14 +17,51 @@
   <meta property="og:title" content="Renaissance Ricarda — Software Engineer &amp; Security Tester">
   <meta property="og:description"
     content="Software engineer yang membangun aplikasi web dan sistem AI, lalu mengujinya sebagai penguji keamanan.">
-  <meta property="og:image" content="https://renaissancericarda.my.id/assets/photo.jpeg">
+  <meta property="og:image" content="https://renaissancericarda.my.id/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Renaissance Ricarda, Software Engineer: Saya membangun sistem. Lalu mencoba membobolnya.">
   <meta property="og:locale" content="id_ID">
   <meta property="og:locale:alternate" content="en_US">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Renaissance Ricarda — Software Engineer &amp; Security Tester">
   <meta name="twitter:description"
     content="Software engineer yang membangun aplikasi web dan sistem AI, lalu mengujinya sebagai penguji keamanan.">
-  <meta name="twitter:image" content="https://renaissancericarda.my.id/assets/photo.jpeg">
+  <meta name="twitter:image" content="https://renaissancericarda.my.id/assets/og-image.png">
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Renaissance Ricarda Sugiarto Putra",
+  "alternateName": "Renaissance Ricarda",
+  "url": "https://renaissancericarda.my.id/",
+  "image": "https://renaissancericarda.my.id/assets/og-image.png",
+  "jobTitle": "Software Engineer",
+  "email": "mailto:renaissancericharda@gmail.com",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Indramayu",
+    "addressRegion": "Jawa Barat",
+    "addressCountry": "ID"
+  },
+  "knowsAbout": [
+    "Web Development",
+    "Laravel",
+    "React",
+    "Artificial Intelligence",
+    "Cyber Security",
+    "Penetration Testing",
+    "OSINT"
+  ],
+  "sameAs": [
+    "https://github.com/Noolep",
+    "https://github.com/Neko-chi",
+    "https://linkedin.com/in/renaissancericarda",
+    "https://www.instagram.com/rcrd06._/"
+  ]
+}
+  </script>
 
   <script>
     (function (root) {
@@ -50,12 +88,12 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..800&family=Martian+Mono:wght@400;500&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=20261105f">
+  <link rel="stylesheet" href="css/style.css?v=20261105k">
 
-  <script src="js/i18n.js?v=20261105f" defer></script>
-  <script src="js/main.js?v=20261105f" defer></script>
-  <script src="js/device.js?v=20261105f" defer></script>
-  <script src="js/build.js?v=20261105f" defer></script>
+  <script src="js/i18n.js?v=20261105k" defer></script>
+  <script src="js/main.js?v=20261105k" defer></script>
+  <script src="js/device.js?v=20261105k" defer></script>
+  <script src="js/build.js?v=20261105k" defer></script>
 </head>
 
 <body>
@@ -179,7 +217,74 @@
           </h2>
         </header>
 
-        <article class="case" id="arona" data-unit="case-arona">
+        <article class="case case-long" id="inventaris" data-unit="case-inventaris">
+          <div class="case-top">
+            <div class="case-copy">
+              <h3 data-b="text">Inventaris Gudang Sekolah</h3>
+              <p class="case-meta" data-b="text" data-i18n="work.inv.meta">2026 · Uji Kompetensi Pemrogram Junior · Laravel 12</p>
+              <p class="case-lede" data-b="text" data-i18n="work.inv.lede">Aplikasi web untuk mencatat stok gudang sekolah per
+                lokasi dan kondisi barang, dengan persetujuan Manager sebelum barang keluar.</p>
+              <ul class="tags" data-b="text">
+                <li>Laravel12</li>
+                <li>PostgreSQL</li>
+                <li>TailwindCSS</li>
+              </ul>
+              <div class="case-links">
+                <a class="link-arrow" href="https://inventaris-gudang-sekolah.vercel.app/login" target="_blank" rel="noopener"
+                  data-b="text">
+                  <span data-i18n="work.inv.demo">Buka demo langsung</span>
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M7 17 17 7m0 0H8m9 0v9" />
+                </svg>
+                </a>
+                <a class="link-arrow" href="https://github.com/Neko-chi/Ujikom-Inventaris" target="_blank" rel="noopener"
+                  data-b="text">
+                  <span data-i18n="work.inv.repo">Lihat repositori GitHub</span>
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M7 17 17 7m0 0H8m9 0v9" />
+                </svg>
+                </a>
+              </div>
+              <p class="case-note" data-b="text" data-i18n="work.inv.note">Butuh akun untuk mencoba demonya? Selesaikan CTF di
+                terminal monitor di atas: klik layarnya dari laptop, lalu ketik ctf.</p>
+            </div>
+
+            <figure class="pipe" data-b="box">
+              <div class="pipe-track">
+                <span class="pipe-node" data-i18n="inv.operator">Operator mencatat</span>
+                <span class="pipe-node pipe-core" data-i18n="inv.manager">Manager memeriksa</span>
+                <span class="pipe-node" data-i18n="inv.stock">Stok diperbarui</span>
+              </div>
+              <div class="pipe-track pipe-track-plain">
+                <span class="pipe-node" data-i18n="inv.loan">Peminjaman</span>
+                <span class="pipe-node" data-i18n="inv.move">Pemindahan</span>
+                <span class="pipe-node" data-i18n="inv.destroy">Pemusnahan</span>
+              </div>
+              <figcaption data-i18n="inv.caption">Ilustrasi alur barang keluar dan tiga jenisnya, bukan tangkapan layar.</figcaption>
+            </figure>
+          </div>
+
+          <dl class="star">
+            <div>
+              <dt data-b="text" data-i18n="star.challenge">Tantangan</dt>
+              <dd data-b="text" data-i18n="work.inv.c">Membangun aplikasi inventaris lengkap untuk Uji Kompetensi skema Pemrogram
+                Junior, dengan tiga peran pengguna dan stok yang dicatat per lokasi serta per kondisi barang.</dd>
+            </div>
+            <div>
+              <dt data-b="text" data-i18n="star.solution">Solusi teknis</dt>
+              <dd data-b="text" data-i18n="work.inv.s">Laravel 12 dengan Tailwind CSS dan Turbo. Barang keluar dibagi menjadi
+                peminjaman dengan pengembalian bertahap, pemindahan ruangan, dan pemusnahan barang rusak berat, lalu Manager
+                memeriksa sebelum menyetujui.</dd>
+            </div>
+            <div>
+              <dt data-b="text" data-i18n="star.result">Hasil dan dampak</dt>
+              <dd data-b="text" data-i18n="work.inv.r">Berjalan online di Vercel dan Supabase (PostgreSQL), lulus 95 test dengan 363
+                assertion, dan dilengkapi dokumen rancangan, ERD, serta tutorial deploy.</dd>
+            </div>
+          </dl>
+        </article>
+
+        <article class="case case-flip" id="arona" data-unit="case-arona">
           <div class="case-top">
             <div class="case-copy">
               <h3 data-b="text">A.R.O.N.A</h3>
@@ -237,7 +342,7 @@
           </dl>
         </article>
 
-        <article class="case case-flip" id="juara" data-unit="case-juara">
+        <article class="case case-long" id="juara" data-unit="case-juara">
           <div class="case-top">
             <div class="case-copy">
               <h3 data-b="text" data-i18n="work.win.title">Juara 1 Web Technologies</h3>
