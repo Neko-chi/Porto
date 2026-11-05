@@ -330,7 +330,7 @@
   var WRAP = 50;
   var INPUT_MAX = 44;
   var canType = matchMedia('(pointer: fine)').matches;
-  var term = { active: false, input: '', rows: [], past: [], back: 0, effect: '', effectEnd: 0, output: '' };
+  var term = { active: false, input: '', rows: [], past: [], back: 0, effect: '', effectEnd: 0, output: '', cwd: '' };
 
   function resetTerm() {
     term.active = false;
@@ -340,6 +340,12 @@
     term.back = 0;
     term.effect = '';
     term.output = '';
+    term.cwd = '';
+  }
+
+  // Baris prompt mengikuti folder yang sedang dibuka.
+  function promptRow() {
+    return ['┌─[ricarda@parrot]─[~' + (term.cwd ? '/' + term.cwd : '') + ']', 'p'];
   }
 
   function print(text, kind) {
@@ -407,9 +413,22 @@
     });
   }
 
+  var TIPS_DIR = 'ctf-tips';
+  var TIPS_FILE = 'tips.txt';
+  var TIPS = [
+    '1. press ctrl+u here, find "ctf fragment 1"',
+    '2. open /robots.txt, decode the base64 fragment',
+    '   in the browser console: atob("...")',
+    '3. type dossier, press ctrl+u, find ctf-fragment',
+    '   decode rot13: shift each letter by 13',
+    '4. join them: rr{one_two_three}',
+    '5. back here: submit rr{...}',
+    '6. your reward: ls -a'
+  ].join('\n');
+
   var COMMANDS = {
     help: function () {
-      print('whoami  about  skills  projects  contact\nls  cat  neofetch  date  echo  clear  download\nmatrix  hire  cv  dossier  ctf  copy  reboot  exit');
+      print('whoami  about  skills  projects  contact\nls  cd  cat  neofetch  date  echo  clear  download\nmatrix  hire  cv  dossier  ctf  copy  reboot  exit');
     },
     whoami: function () { print('renaissance ricarda'); },
     about: function () { print('software engineer from indramayu, indonesia.\nbuilds web apps and AI systems, then tests them.'); },
@@ -417,11 +436,22 @@
     projects: function () { print('inventaris   laravel 12, live demo\nA.R.O.N.A    neural assistant, python\njuara 1      web technologies, indramayu'); },
     contact: function () { print('renaissancericharda@gmail.com\ngithub.com/Noolep'); },
     ls: function (args) {
-      var all = /^-[a-z]*a/.test(args) && ctfSolved;
-      print((all ? '.  ..  ' + HIDDEN_FILE + '\n' : '') + 'focus.txt projects/ dossier/ cv.pdf secrets.txt');
+      var flags = /^-[a-z]+/.exec(args);
+      var dot = flags && flags[0].indexOf('a') >= 0;
+      var target = args.replace(/^-[a-z]+\s*/, '').replace(/\/$/, '');
+
+      if (term.cwd === TIPS_DIR || target === TIPS_DIR) {
+        print((dot ? '.  ..  ' : '') + TIPS_FILE);
+      } else if (target) {
+        print('ls: ' + target + ': no such file or folder', 'e');
+      } else {
+        print((dot && ctfSolved ? '.  ..  ' + HIDDEN_FILE + '\n' : '') + 'focus.txt projects/ dossier/ ' + TIPS_DIR + '/\ncv.pdf secrets.txt');
+      }
     },
     cat: function (args) {
-      if (args === 'focus.txt') print('full-stack · AI · cyber security');
+      if (args === TIPS_DIR + '/' + TIPS_FILE || (args === TIPS_FILE && term.cwd === TIPS_DIR)) print(TIPS);
+      else if (term.cwd === TIPS_DIR) print('cat: ' + (args || 'missing file') + ': no such file', 'e');
+      else if (args === 'focus.txt') print('full-stack · AI · cyber security');
       else if (args === 'secrets.txt') print('permission denied. earn access first: type ctf', 'e');
       else if (args === HIDDEN_FILE && ctfSolved) {
         print(HIDDEN_DATA);
@@ -454,9 +484,14 @@
       window.setTimeout(function () { window.location.href = 'dossier/'; }, 1200);
     },
     cd: function (args) {
-      if (args.replace(/\/$/, '') === 'dossier') COMMANDS.dossier();
-      else print('cd: ' + (args || 'missing folder') + ': permission denied', 'e');
+      var target = args.replace(/\/$/, '');
+      if (!target || target === '~' || target === '..') term.cwd = '';
+      else if (term.cwd) print('cd: ' + target + ': no such folder', 'e');
+      else if (target === TIPS_DIR) term.cwd = TIPS_DIR;
+      else if (target === 'dossier') COMMANDS.dossier();
+      else print('cd: ' + target + ': permission denied', 'e');
     },
+    pwd: function () { print('/home/ricarda' + (term.cwd ? '/' + term.cwd : '')); },
     base64: function (args) {
       var match = /^(-d|--decode)\s+(\S+)$/.exec(args);
       if (!match) print('usage: base64 -d <file>', 'e');
@@ -477,7 +512,7 @@
         print('solved. your reward is waiting: ls -a', 'c');
         return;
       }
-      print('3 fragments are hidden around this site.\njoin them: rr{one_two_three}\nsubmit with: submit rr{...}\nfirst clue: read the source of this page.\nreward: demo accounts for the inventory app.');
+      print('3 fragments are hidden around this site.\njoin them: rr{one_two_three}\nsubmit with: submit rr{...}\nfirst clue: read the source of this page.\nreward: demo accounts for the inventory app.\nstuck? look around with ls.');
     },
     submit: function (args) {
       var guess = args.trim();
@@ -537,7 +572,7 @@
 
   function run(line) {
     var text = line.trim();
-    term.rows.push([PROMPT, 'p'], ['└──╼ $' + line, 'c']);
+    term.rows.push(promptRow(), ['└──╼ $' + line, 'c']);
     if (!text) return;
 
     term.past.push(text);
@@ -779,7 +814,7 @@
     }
 
     if (s >= SEQ_END) {
-      term.rows.concat([[PROMPT, 'p'], ['└──╼ $' + term.input, 'c']]).slice(-MAX_ROWS).forEach(function (line) {
+      term.rows.concat([promptRow(), ['└──╼ $' + term.input, 'c']]).slice(-MAX_ROWS).forEach(function (line) {
         row(line[0], line[1]);
       });
     } else {
@@ -1097,7 +1132,7 @@
       var ctrl = e.ctrlKey;
       if (ctrl && e.key === 'l') term.rows = [];
       else if (ctrl && e.key === 'c') {
-        term.rows.push([PROMPT, 'p'], ['└──╼ $' + term.input + '^C', 'c']);
+        term.rows.push(promptRow(), ['└──╼ $' + term.input + '^C', 'c']);
         term.input = '';
       } else if (ctrl) return;
       else if (e.key === 'Escape') term.active = false;
